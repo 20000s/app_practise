@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>群公告</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body id="padbody">
+        <span id="melo-wrapped-iframe" style="position: absolute; top: -50000px; white-space:nowrap; overflow: hidden">
+            <iframe id="melo-hidden-iframe"
+                style="position: absolute; top: -50000px; border: 0; z-index: -50000; width: 50000px" frameborder="0"
+                src="about:blank"></iframe>
+        </span>
+        <div id="container">
+            <div id="header"></div> <!-- 用于标题栏和工具栏 -->
+            <div id="content-container">
+                <!-- 用于编辑器，可以添加多个编辑器 -->
+                <div id="doc-editor" class="scrollable"></div> <!-- 用于挂载单个编辑器 -->
+            </div>
+            <div id="non-editor"></div> <!-- 用于挂载不随编辑器滚动的其他 UI 组件 -->
+            <div id="footer" style="height: 0;">
+            </div>
+            <!-- 用于挂载状态栏 -->
+            <div id="toolbar"></div> <!-- 用于挂载状态栏-->
+
+        </div>
+    </body>
+
+<script>
+    // PC 端需要这一段代码，from @taiyuchen
+    function FetchQueue() {
+        var jsqueue = qmailBridge.fetchQueue();
+        window.external.nativeCall("FetchQueueCallback", [jsqueue]);
+    }
+    function PulishNotice() {
+        var data = WeDocs.triggerDataBackup();
+        window.external.nativeCall("PulishNoticeCallback", [data]);
+    }
+
+    function GetEditorStatus() {
+        var status = WeDocs.getEditorStatus();
+        window.external.nativeCall("GetEditorStatusCallback", [status]);
+    }
+</script>
+
+<script>
+    var CONTENT = {};
+    var LANGUAGE = 'en';
+    var PLATFORM = 1;
+    var VERSION = 3;
+    var HONGBAOFLAG = true;
+    var IS_MANAGER = false;
+    var FONTSIZE = 14.66666666;
+    // 目前只有 PC 端会传这个值进来
+    var DEFAULT_WIDTH = window.innerWidth;
+    var DEFAULT_HEIGHT = window.innerHeight;
+    var WEDRIVE_DISABLED = 0;
+    var WEDOC_DISABLED = 0;
+    var TDOC_ENABLED = 0;
+
+    window.settings = window.settings || { vid: 0 };
+
+    // 兼容本地开发与实际环境的方式
+    var getQueryVariable = function (variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+
+    if (getQueryVariable('debug')) {
+        // local dev
+        var debugLang = getQueryVariable('lang');
+        if (debugLang && ['zh', 'zh_HK', 'en'].indexOf(debugLang) > -1) {
+            LANGUAGE = debugLang;
+        }
+    } else {
+        // clinet process here
+        LANGUAGE = '$language$';
+        PLATFORM = $platform$;
+        FONTSIZE = +'$fontsize$';
+        DEFAULT_WIDTH = +'$defaultwidth$';
+        DEFAULT_HEIGHT = +'$defaultheight$';
+        WEDRIVE_DISABLED = +'$wedrivedisabled$';
+        WEDOC_DISABLED = +'$wedocdisabled$';
+        TDOC_ENABLED = +'$tdocenabled$';
+    }
+</script>
+
+<script>
+    var IS_EN = /Language\/en/i.test(navigator.userAgent) || LANGUAGE === 'en';
+    var loadJS = function (url, success) {
+        if (!url) {
+            success();
+            return;
+        }
+        var domScript = document.createElement('script');
+        domScript.src = url;
+        success = success || function () {
+        };
+        domScript.onload = domScript.onreadystatechange = function () {
+            if (!this.readyState || 'loaded' === this.readyState || 'complete' === this.readyState) {
+                success();
+                this.onload = this.onreadystatechange = null;
+                this.parentNode.removeChild(this);
+            }
+        }
+        document.getElementsByTagName('head')[0].appendChild(domScript);
+    }
+    // 1:ios 2：android 3:pc 4:mac dev：本地开发 其他：远程js
+    if (PLATFORM - 0 == 2) {
+        //根据平台加载基础库
+        loadJS(IS_EN ? 'file:///android_asset/announcementEditor/en.js' : '', function () {
+            loadJS('file:///android_asset/announcementEditor/jquery-1.7.2.js', function () {
+                $('head').append('<link rel="stylesheet" href="file:///android_asset/announcementEditor/dist/word.css" type="text/css" />');
+                loadJS('file:///android_asset/announcementEditor/react.production.min.js', function () {
+                    loadJS('file:///android_asset/announcementEditor/react-dom.production.min.js', function () {
+                        loadJS('file:///android_asset/announcementEditor/aegis.min.0.js', function() {
+                            loadJS('file:///android_asset/announcementEditor/dist/word.js');
+                        });
+                    });
+                });
+            });
+        });
+    } else if (PLATFORM - 0 == 3) {
+        loadJS(IS_EN ? 'http://wxwork/html/coversation_notice/en.js' : '', function () {
+            loadJS('http://wxwork/html/coversation_notice/jquery-1.7.2.js', function () {
+                $('head').append('<link rel="stylesheet" href="http://wxwork/html/coversation_notice/dist/word.css" type="text/css" />');
+                loadJS('http://wxwork/html/coversation_notice/react.production.min.js', function () {
+                    loadJS('http://wxwork/html/coversation_notice/react-dom.production.min.js', function () {
+                        loadJS('http://wxwork/html/coversation_notice/aegis.min.0.js', function() {
+                            loadJS('http://wxwork/html/coversation_notice/dist/word.js');
+                        });
+                    });
+                });
+            });
+        });
+    } else {
+        loadJS(IS_EN ? './en.js' : '', function () {
+            loadJS('./jquery-1.7.2.js', function () {
+                $('head').append('<link rel="stylesheet" href="./dist/word.css" type="text/css" />');
+                loadJS('./react.production.min.js', function () {
+                    loadJS('./react-dom.production.min.js', function () {
+                        loadJS('./aegis.min.0.js', function() {
+                            loadJS('./dist/word.js');
+                        });
+                    });
+                });
+            });
+        });
+    }
+</script>
+
+</html>

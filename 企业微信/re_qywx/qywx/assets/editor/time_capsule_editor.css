@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+}
+
+.QMUIEditorHead {
+    background-color: #FFFFFF;
+    height: 115px;
+    position: fixed;
+    top: 20px;
+    left:0;
+    width:100%;
+}
+
+.QMUIEditor {
+    position: relative;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    min-height: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    word-break: break-word;
+    outline: none;
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    -webkit-user-modify: read-write !important;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    color: #000000;
+    background-color: #FFFFFF;
+}
+.QMUIEditor *:last-child {
+    margin-bottom: 0;
+}
+.QMUIEditor_empty[placeholder]:before {
+    content: attr(placeholder);
+    opacity: 0.5;
+    position: absolute;
+    color: #D0D0D0;
+}
+
+.QMUIEditor p, .QMUIEditor div {
+    margin: 0 0 8px;
+}
+
+/** hack掉系统产生的奇怪span **/
+.QMUIEditor span[style] {
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    font-size: inherit !important;
+    color: inherit !important;
+}
+/** 反色逻辑 **/
+.darkMode {
+    background: rgb(226, 226, 228) !important;
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.darkMode img {
+    filter: hue-rotate(180deg) invert(1);
+}
+
+.darkMode video {
+    filter: hue-rotate(180deg) invert(1);
+}
+
+.darkMode :not(img) {
+   filter: invert(0);
+}

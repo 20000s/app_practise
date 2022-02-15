@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width"/>
+	<title>The device is currently in airplane mode or disconnected from the network</title>
+	<style>
+		html,body,h1,p,ol,li {
+		padding: 0;
+		margin: 0;
+		}
+		body{
+		padding:16px
+		}
+
+		.qmui_title {
+		font-size: 18px;
+		padding-bottom: 20px;
+		padding-top:20px;
+		line-height: 1;
+		color: #000;
+		}
+		.qmui_if {
+		padding-top:12px;
+		line-height: 1;
+		color: #777777;
+		}
+		ol {
+		list-style: decimal;
+		padding-left: 20px;
+		margin-top:12px;
+		}
+
+		ol.qmui_ol_with_title {
+		padding-left: 34px;
+		}
+
+		li {
+		padding: 4px 0;
+		color: #777777;
+		line-height: 1.5;
+		}
+		strong{
+		font-weight: bold;
+		}
+
+		.button {
+		height: 50px;
+		width: 200px;
+		font-size: 16px;
+		background-color: #E3E4E7;
+		color: #000000;
+		border: none;
+		outline: none;
+		}
+
+		.button:active {
+		background-color: rgba(227, 228, 231, 0.5);
+		color: rgba(0, 0, 0, 0.5);
+		}
+	</style>
+</head>
+<body>
+<script>
+	function setting_click() {
+	    console.log('qqmail://airplane');
+	}
+</script>
+<h1 class="qmui_title">The device is currently in airplane mode or disconnected from the network</h1>
+<p class="qmui_if">To connect to the Internet, refer to the following:</p>
+<ol class="qmui_ol_with_title">
+	<li>Check if the mobile phone's “<strong>Airplane Mode</strong>” settings, and turn airplane mode off.</li>
+	<li>Check if the mobile phone's “<strong>WLAN</strong>” settings, and connect to a WiFi hotspot.</li>
+	<li>Check if the mobile phone has been connected to the mobile network.</li>
+</ol>
+<br/>
+<br/>
+<center><button class="button" onclick="setting_click()">Set Now</button></center>
+</body>
+</html>

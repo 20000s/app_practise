@@ -1,0 +1,191 @@
+{
+    "scenelist": [
+        {
+            "title": "Receive Email",
+            "describe": "Receiving Speed/Notification",
+            "detail": {
+                "questionlist": [
+                    {
+                        "q": "App cannot receive the mail that exists on the webpage",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Incoming mail log shows that the mail is intercepted",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "No notifications for new mails",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Receiving delay",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Keep receiving...",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Failed to load mail list",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Received mails are missing",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "No Inbox",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "New mails prompted cannot be refreshed in the list",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Corner mark shows incorrect number of unread mails",
+                        "pic": "0"
+                    }
+                ],
+                "tophint": "Select the problem encountered when receiving mails",
+                "detailhint": "Describe the problem in detail. If details such as sending time and email subject are provided, we will follow up and solve the problem for you more quickly",
+                "mandatorytext": "1"
+            }
+        },
+        {
+            "title": "Read Mail",
+            "describe": "Email Body/Loading",
+            "detail": {
+                "questionlist": [
+                    {
+                        "q": "Body is blank",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Image in text not displayed",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Body gibberish",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Text and image layout exception",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Keep refreshing...",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Failed to translate mails in foreign languages",
+                        "pic": "1"
+                    },
+                    {
+                        "q": "Unable to open link",
+                        "pic": "0"
+                    }
+                ],
+                "tophint": "Select the problem encountered when reading mails",
+                "detailhint": "Describe the problem in detail. If email subject and error screenshot are provided, we will follow up and solve the problem for you more quickly",
+                "mandatorytext": "0"
+            }
+        },
+        {
+            "title": "Attachment",
+            "describe": "Download/Upload/Preview",
+            "detail": {
+                "questionlist": [
+                    {
+                        "q": "Unable to find attachment after downloading",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Failed to upload files in transfer station",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Failed to download normal attachments",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Failed to download large attachments",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Attachment Preview Error",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Attachment Preview Gibberish",
+                        "pic": "0"
+                    }
+                ],
+                "tophint": "Select the problem encountered when handling attachments",
+                "detailhint": "Describe the problem in detail. If attachment name and screenshot are provided, we will follow up and solve the problem for you more quickly",
+                "mandatorytext": "1"
+            }
+        },
+        {
+            "title": "Send Mail",
+            "describe": "Sending/Junk Mail",
+            "detail": {
+                "questionlist": [
+                    {
+                        "q": "Failed to send mail",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Failed to send group mail",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Attachment/mail is too large",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Suspected Spam",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "The number of sent mails reaches the limit",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Remind configuration error of outgoing mail server",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Mail returned after sending",
+                        "pic": "0"
+                    }
+                ],
+                "tophint": "Select the problem encountered when sending mails",
+                "detailhint": "Describe the problem in detail. If sending time and error screenshot are provided, we will follow up and solve the problem for you more quickly",
+                "mandatorytext": "0"
+            }
+        },
+        {
+            "title": "Network Problem",
+            "describe": "Mobile/Wi-Fi",
+            "detail": {
+                "questionlist": [
+                    {
+                        "q": "Server connection failed",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Unable to use in WiFi mode",
+                        "pic": "0"
+                    },
+                    {
+                        "q": "Unable to use in mobile data mode",
+                        "pic": "0"
+                    }
+                ],
+                "tophint": "Select the problem encountered",
+                "detailhint": "Describe the problem in detail. If screenshot of error prompt is provided, we will follow up and solve the problem for you more quickly",
+                "mandatorytext": "0"
+            }
+        },
+    ]
+}

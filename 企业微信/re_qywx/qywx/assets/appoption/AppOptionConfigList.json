@@ -1,0 +1,108 @@
+{
+	"lang":"cn,en",
+	"config":[{
+		"val":1,
+		"type":1,
+		"priority":1,
+		"is_allow_disable":false,
+		"is_default_checked":true,
+        "text_cn":"获取可见范围内的使用成员信息（不含部门、电话和邮箱）",
+        "text_en":"Obtain the information of allowed members accessing the app (without department, phone number and email"
+	},{
+		"val":2,
+		"type":1,
+		"priority":2,
+		"is_allow_disable":false,
+		"is_default_checked":true,
+        "text_cn":"获取可见范围内的部门和成员信息（不含电话和邮箱）",
+        "text_en":"Obtain the information of allowed departments and members (without phone number and email)"
+	},{
+        "val":12,
+        "type":1,
+        "priority":3,
+        "is_allow_disable":false,
+        "is_default_checked":true,
+        "text_cn":"可读取并可修改全公司范围内员工的以下信息：帐号、姓名、别名、性别、头像、手机号、座机号、邮箱地址、部门、职务、身份、员工企业微信二维码、员工对外身份信息",
+        "text_en":"App can read and modify the following information of all employees within the company: account, name, alias, gender, profile photo, mobile number, office number, email address, department, title, identity, WeCom QR code, and identity information displayed to external contacts."
+     },{
+        "val":13,
+        "type":1,
+        "priority":4,
+        "is_allow_disable":false,
+        "is_default_checked":true,
+        "text_cn":"通过企业微信，授权可用范围内的成员登录第三方客户端应用",
+        "text_en":"Authorize allowed members to log in to third-party apps via WeCom"
+     },{
+        "val":3,
+        "type":2,
+        "priority":1,
+        "is_allow_disable":false,
+        "is_default_checked":true,
+        "text_cn":"获取可见范围内的成员添加的客户信息（不含头像）",
+        "text_en":"Get customer info added by allowed members(without avatar)"
+    },{
+        "val":8,
+        "type":6,
+        "priority":1,
+        "is_allow_disable":false,
+        "is_default_checked":true,
+        "text_cn":"「家校沟通」使用权限，包括读取家长信息（不含电话）和给家长发通知",
+        "text_en":"Permissions to use Contact Parents, including the ability to view parent info (excluding phone number) and send notifications to parents"
+     },{
+        "val":9,
+        "type":6,
+        "priority":2,
+        "is_allow_disable":false,
+        "is_default_checked":true,
+        "text_cn":"「家校沟通」使用和编辑权限，包括编辑家校通讯录和给家长发通知（一个企业只能授权给一个应用）",
+        "text_en":"Permissions to use or edit Contact Parents, including the ability to edit Education Contacts and send notifications to parents (a company can only authorize one app)"
+     },{
+        "val":11,
+        "type":7,
+        "priority":1,
+        "is_allow_disable":false,
+        "is_default_checked":true,
+        "text_cn":"可为可见范围内的成员写入考勤机打卡数据",
+        "text_en":"Write attendance records of allowed members"
+     },{
+        "val":6,
+        "type":5,
+        "priority":1,
+        "is_allow_disable":false,
+        "is_default_checked":true,
+        "text_cn":"获取由员工授权的文件",
+        "text_en":"Obtain files authorized by members"
+	 },{
+        "val":14,
+        "type":8,
+        "priority":1,
+        "is_allow_disable":false,
+        "is_default_checked":true,
+        "text_cn":"通过企业微信获得成员主动选择的可用范围内的常用信息（不包括手机号和邮箱）",
+        "text_en":"Obtain general information within the available scope specified by members via WeCom (excluding mobile numbers and emails)"
+     },{
+		"val":4,
+		"type":3,
+		"priority":0,
+		"is_allow_disable":true,
+		"is_default_checked":true,
+        "text_cn":"可通过企业微信公费电话联系你（不会展示具体手机号）",
+        "text_en":"Allow contacting you via company-paid call (your phone number is not made public)"
+	},{
+		"val":5,
+		"type":3,
+		"priority":0,
+		"is_allow_disable":true,
+		"is_default_checked":true,
+        "text_cn":"为你提供专属客服（添加$brand_customer_service$为外部联系人）",
+        "text_en":"Provide exclusive customer service for you (add $brand_customer_service$ to external contacts)"
+    },{
+        "val":7,
+        "type":3,
+        "priority":1,
+        "is_allow_disable":true,
+        "is_default_checked":true,
+        "text_cn":"为你提供专属客服（添加$brand_customer_service$为外部联系人），并可通过企业微信公费电话联系你（不会展示具体手机号）",
+        "text_en":"Provide exclusive customer service for you (add $brand_customer_service$ to external contacts), and allow contacting you via company-paid call (your phone number is not made public)"
+     }]
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title class="i18n"  name ='memberGroupChatRecord'></title>
+    <link rel="stylesheet" href="../lib/reset.css">
+    <link rel="stylesheet" href="multiTable.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no" />
+    <style>$custom_css$</style>
+</head>
+
+<body style="visibility: hidden;" class="tableBody">
+
+
+
+<div class="fullpage">
+    <div class="js-table-data" id="table_left">
+        <div id="table_left_headerWrap" class="table_header">
+            <table id="left_table1" class="table table-bordered">
+                <tr>
+                    <th class="col_1 table_header_sort">
+                        <span class="paddingLeft  js_table_first" name ='member' >ss成员</span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <div id="table_left_contentWrap">
+            <table id="left_table2" class="table table-bordered">
+            </table>
+        </div>
+    </div>
+    <div class="js-table-data" id="table_right">
+        <div id="table_right_headerWrap" class="table_header">
+            <div id="right_divx">
+                <table id="right_table1" class="table table-bordered">
+                    <tr>
+                        <th class="col_2 table_header_sort" data-name="">
+                            <span>群聊总数</span>
+                            <i class="arrow arrow_down arrow_small js_first_arrow"
+                               style="visibility: visible;display: none"></i>
+                        </th>
+                        <th class="col_3 table_header_sort" data-name="">
+                            <span>新增群聊数</span>
+                            <i class="arrow arrow_down arrow_small"></i>
+
+                        </th>
+
+                        <th class="col_8 table_header_sort" data-name="">
+                            <span>新增群聊数3</span>
+                            <i class="arrow arrow_down arrow_small"></i>
+                        </th>
+
+                        <th class="col_5 table_header_sort" data-name="">
+                            <span>新增群聊数4</span>
+                            <i class="arrow arrow_down arrow_small"></i>
+                        </th>
+
+                        <th class="col_6 table_header_sort" data-name="">
+                            <span>新增群聊数5</span>
+                            <i class="arrow arrow_down arrow_small"></i>
+                        </th>
+
+                        <th class="col_8 table_header_sort" data-name="">
+                            <span>新增群聊数6</span>
+                            <i class="arrow arrow_down arrow_small"></i>
+                        </th>
+
+                        <th class="col_7 table_header_sort" data-name="ChatRoomMsgAllCount">
+                            <span>新增群聊数7</span>
+                            <i class="arrow arrow_down arrow_small"></i>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="table_right_contentWrap">
+            <table id="right_table2" class="table table-bordered">
+            </table>
+        </div>
+    </div>
+    <div class="js-loading loading">
+        <span class="loading_text i18n" name ='loading'>正在加载...</span>
+    </div>
+    <div class="js-table-empty table_empty">
+        <img style="width:107px;display: none" src='data:image/png;base64,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'>
+        <p style="color:#808080;padding-top:10px;" class="i18n" name='empty'>暂无数据</p>
+    </div>
+</div>
+
+<div class="worknote_dateSelect" style="display: none;">
+    <div class="worknote_dateSelect_actionbar"><span class="dateSelect_cancel i18n" name="cancel">取消</span></div>
+    <div class="worknote_dateSelect_item i18n js_range_btn js-filter-date" data-date="yesterday" name="yesterday">昨日</div>
+    <div class="worknote_dateSelect_item i18n js_range_btn js-filter-date" data-date="week" name="week">近7日</div>
+    <div class="worknote_dateSelect_item i18n js_range_btn js-filter-date" data-date="month" name="month">近30日</div>
+    <div class="worknote_dateSelect_item i18n js_range_btn js-filter-date" data-date="other" name="other">自定义</div>
+</div>
+<div class="mask" style="display:none;"></div>
+
+</body>
+
+<script>
+    var CONTENT = {};
+    var LANGUAGE = 'zh';
+    var PLATFORM = 1;
+    var VERSION  = 0;
+
+    // 兼容本地开发与实际环境的方式
+    var getQueryVariable = function (variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+
+    if (getQueryVariable('debug')) {
+        // local dev
+        if (getQueryVariable('pc')) PLATFORM = 3;
+        var debugLang = getQueryVariable('lang');
+        if (debugLang && ['zh', 'zh_HK', 'en'].indexOf(debugLang) > -1) {
+            LANGUAGE = debugLang;
+        }
+    } else {
+        // client process here
+        CONTENT = $content$;
+        LANGUAGE = '$language$';
+        PLATFORM = $platform$;
+        VERSION  = $version$;
+    }
+</script>
+<script>
+    var loadJS = function (url, success) {
+        var domScript = document.createElement('script');
+        domScript.src = url;
+        success = success || function () {
+        };
+        domScript.onload = domScript.onreadystatechange = function () {
+            if (!this.readyState || 'loaded' === this.readyState || 'complete' === this.readyState) {
+                success();
+                this.onload = this.onreadystatechange = null;
+                this.parentNode.removeChild(this);
+            }
+        }
+        document.getElementsByTagName('head')[0].appendChild(domScript);
+    }
+    // 1:ios 2：android 3:pc 4:mac dev：本地开发 其他：远程js
+    if (PLATFORM - 0 == 2) {
+        //mark 根据平台加载基础库 -- 因为android本地打包不支持相对路径
+        loadJS('file:///android_asset/memberAnalysis/lib/zepto.min.js', function () {
+            $('head').append('<link rel="stylesheet" href="file:///android_asset/memberAnalysis/lib/reset.css">');
+            $('head').append('<link rel="stylesheet" href="file:///android_asset/memberAnalysis/chartable/multiTable.css">');
+            loadJS('file:///android_asset/memberAnalysis/lib/zepto.touch.js',function(){
+                loadJS('file:///android_asset/memberAnalysis/lib/fx.js',function () {
+                    loadJS('file:///android_asset/memberAnalysis/lib/slideDown.js',function () {
+                        loadJS('file:///android_asset/memberAnalysis/lib/i18n.js',function () {
+                            loadJS('file:///android_asset/memberAnalysis/chartable/multiTable.js');
+                        });
+                    });
+                });
+            })
+
+        });
+    }else{
+        loadJS('../lib/zepto.min.js', function () {
+            loadJS('../lib/zepto.touch.js',function(){
+                loadJS('../lib/fx.js',function () {
+                    loadJS('../lib/slideDown.js',function () {
+                        loadJS('../lib/i18n.js',function () {
+                            loadJS('multiTable.js');
+                        });
+                    });
+                });
+            })
+        });
+    }
+</script>
+
+</html>

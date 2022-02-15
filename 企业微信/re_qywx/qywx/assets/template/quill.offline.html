@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" sizes="16x16" href="//rescdn.qqmail.com/node/webdoc/images/CircleLogoBlue16.f4c76bdc40.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="//rescdn.qqmail.com/node/webdoc/images/CircleLogoBlue32.7f2d4ee25c.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="//rescdn.qqmail.com/node/webdoc/images/CircleLogoBlue48.4d4d70c899.png">
+
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
+        <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+        <link rel="stylesheet" href="/docs/static/style/css/sprite.css">
+        <link rel="stylesheet" href="/docs/static/style/css/longText_word.css">
+        
+        <link rel="stylesheet" href="/docs/static/style/css/longText_mobile.css">
+        
+        <script>
+            document.domain = 'doc.qmail.com'
+        </script>
+    </head>
+
+    <body>
+        <script>
+            var isWin = (function()
+            {
+                var ua = navigator.userAgent.toLowerCase();
+                var isWin = (ua.indexOf('windows') != -1 || ua.indexOf('win32') != -1) && true;
+                if (isWin) document.body.className += ' isWin';
+                return isWin;
+            })()
+        </script>
+        
+        <script crossorigin="anonymous" src="/docs/static/js/common/QQMailApi.js"></script>
+        
+        <script>
+                function GetQueryString(name)
+                {
+                    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if(r!=null)return  unescape(r[2]); return null;
+                }
+
+                function jumpUrl() {
+                    if (window.history && window.history.length > 1) {
+                        window.history.back();
+                        setTimeout(function () {
+                            var docUrl = 'https://doc.qmail.com/?docsid=' + settings.sid;
+                            window.location = docUrl;
+                        }, 500)
+                    } else if (window.location.history) {
+                        /* 从邀请链接直接进来，是没有 history 的 */
+                        window.location.history.back();
+                    } else {
+                        var docUrl = 'https://doc.qmail.com/?docsid=' + settings.sid;
+                        window.location = docUrl;
+                    }
+                    return false
+                }
+            </script>
+
+            <div id="app" class="word mobile"></div>
+
+            <!-- <script crossorigin="anonymous" src="/docs/static/js/quilljs/core-js.js"></script> -->
+            <script crossorigin="anonymous" src="/docs/static/js/quilljs/dist/lodash.js"></script>
+            <script crossorigin="anonymous" src="/docs/static/js/common/report.js"></script>
+
+            <script crossorigin="anonymous" src="/docs/static/js/quilljs/dist/prop-types.js"></script>
+            <script crossorigin="anonymous" src="/docs/static/js/quilljs/dist/preact.js"></script>
+            <script crossorigin="anonymous" src="/docs/static/js/quilljs/dist/preact-compat.js"></script>
+
+            <script>window.React = window.ReactDOM = window.preactCompat</script>
+
+            <script crossorigin="anonymous" src="/docs/static/js/quilljs/dist/mobx.min.js"></script>
+            <script crossorigin="anonymous" src="/docs/static/js/quilljs/dist/mobx-react.js"></script>
+
+            <script crossorigin="anonymous" src="/docs/static/js/quilljs/dist/parchment/parchment.js"></script>
+            <script crossorigin="anonymous" src="/docs/static/js/quilljs/dist/quill/quill.js"></script>
+            <script crossorigin="anonymous" src="/docs/static/js/quilljs/dist/quill-image-resize/image-resize.js"></script>
+
+            <link rel="stylesheet" href="/docs/static/style/css/handsontable.full.css">
+
+            <script crossorigin="anonymous" src="/docs/static/js/quilljs/dist/editor/wework.js"></script>
+
+        <script src="//rescdn.qqmail.com/zh_CN/htmledition/js/bj-report.js"></script>
+
+        <script>
+            BJ_REPORT.init({
+                id: 1336,
+                onReport: function(config, error) {
+                    if (4 == error.level) {
+                        KV.k('badjs_word_err')
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>

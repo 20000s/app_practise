@@ -1,0 +1,8 @@
+7 7
+Input Input_1 0 1 Input_1 0 0 0
+Input Input_2 0 1 Input_2 0 0 0
+TorchLstm TorchLstm_3 1 1 Input_1 TorchLstm_3 256 140 1
+Linear Linear_4 1 1 TorchLstm_3 Linear_4 256 512
+ReLU ReLU_5 1 1 Linear_4 ReLU_5 0.0
+Linear Linear_6 1 1 ReLU_5 Linear_6 512 14
+Eltwise Eltwise_7 2 1 Input_2 Linear_6 Eltwise_7 1 0

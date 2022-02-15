@@ -1,0 +1,87 @@
+{
+    "layer_cnt": 4,
+    "blob_cnt": 4,
+    "layer_info": [
+        {
+            "layer_type": "Input",
+            "layer_name": "Input_0",
+            "input_blob_cnt": 0,
+            "output_blob_cnt": 1,
+            "input_blobs": [],
+            "output_blobs": [
+                "Input_1"
+            ],
+            "layer_param": {},
+            "weight_info": []
+        },
+        {
+            "layer_type": "LSTM",
+            "layer_name": "LSTM_0",
+            "input_blob_cnt": 1,
+            "output_blob_cnt": 1,
+            "input_blobs": [
+                "Input_1"
+            ],
+            "output_blobs": [
+                "LSTM_0_0"
+            ],
+            "layer_param": {
+                "num_output": 300,
+                "num_input": 257,
+                "direction": 1
+            },
+            "weight_info": [
+                0,
+                308400,
+                308400,
+                360000,
+                670800
+            ]
+        },
+        {
+            "layer_type": "LSTM",
+            "layer_name": "LSTM_1",
+            "input_blob_cnt": 1,
+            "output_blob_cnt": 1,
+            "input_blobs": [
+                "LSTM_0_0"
+            ],
+            "output_blobs": [
+                "LSTM_1_0"
+            ],
+            "layer_param": {
+                "num_output": 300,
+                "num_input": 300,
+                "direction": 1
+            },
+            "weight_info": [
+                670800,
+                360000,
+                1030800,
+                360000,
+                1393200
+            ]
+        },
+        {
+            "layer_type": "Linear",
+            "layer_name": "Linear_0",
+            "input_blob_cnt": 1,
+            "output_blob_cnt": 1,
+            "input_blobs": [
+                "LSTM_1_0"
+            ],
+            "output_blobs": [
+                "Linear_4"
+            ],
+            "layer_param": {
+                "num_input": 300,
+                "num_output": 771
+            },
+            "weight_info": [
+                1393200,
+                231300,
+                1625271
+            ]
+        }
+    ]
+}

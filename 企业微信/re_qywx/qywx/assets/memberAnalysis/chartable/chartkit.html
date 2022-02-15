@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../lib/reset.css">
+    <link rel="stylesheet" href="chartkit.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+    <style>$custom_css$</style>
+</head>
+<body style="visibility: hidden;" class="chartkit_body">
+<div class="chartkit_main">
+    <div id="chartkit_container" class=""></div>
+</div>
+
+</body>
+
+<script>
+    // 数据，客户端下发替换
+    var CONTENT = {};
+
+    // `zh`,`zh_HK`,`en`
+    var LANGUAGE = 'zh';
+
+    // PLATFORM: 1:ios 2：android 3:pc 4:mac dev：本地开发 其他：远程js
+    var PLATFORM = 1;
+
+    // VERSION: 0普通版，1家校版，目前无用
+    var VERSION = 0;
+
+    // 兼容本地开发与实际环境的方式
+    var getQueryVariable = function (variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return false;
+    }
+
+    if (getQueryVariable('debug')) {
+        // local dev
+        if (getQueryVariable('pc')) PLATFORM = 3;
+        var debugLang = getQueryVariable('lang');
+        if (debugLang && ['zh', 'zh_HK', 'en'].indexOf(debugLang) > -1) {
+            LANGUAGE = debugLang;
+        }
+    } else {
+        // client process here
+        CONTENT = $content$;
+        LANGUAGE = '$language$';
+        PLATFORM = $platform$;
+        VERSION = $version$;
+    }
+</script>
+
+<script>
+    var loadJS = function (url, success) {
+        var domScript = document.createElement('script');
+        domScript.src = url;
+        success = success || function () {
+        };
+        domScript.onload = domScript.onreadystatechange = function () {
+            if (!this.readyState || 'loaded' === this.readyState || 'complete' === this.readyState) {
+                success();
+                this.onload = this.onreadystatechange = null;
+                this.parentNode.removeChild(this);
+            }
+        }
+        document.getElementsByTagName('head')[0].appendChild(domScript);
+    }
+    // PLATFORM: 1:ios 2：android 3:pc 4:mac dev：本地开发 其他：远程js
+    if (PLATFORM - 0 == 2) {
+        //根据平台加载基础库
+        loadJS('file:///android_asset/memberAnalysis/lib/zepto.min.js', function () {
+            loadJS('file:///android_asset/memberAnalysis/lib/zepto.touch.js', function () {
+                $('head').append('<link rel="stylesheet" href="file:///android_asset/memberAnalysis/lib/reset.css" type="text/css" />');
+                $('head').append('<link rel="stylesheet" href="file:///android_asset/memberAnalysis/chartable/chartkit.css" type="text/css" />');
+                loadJS('file:///android_asset/memberAnalysis/lib/highcharts.js', function () {
+                    loadJS('file:///android_asset/memberAnalysis/chartable/chartkit.js');
+                });
+            });
+        });
+    } else {
+        loadJS('../lib/zepto.min.js', function () {
+            loadJS('../lib/zepto.touch.js', function () {
+                loadJS('../lib/highcharts.js', function () {
+                    loadJS('chartkit.js');
+                });
+            });
+        });
+    }
+</script>
+
+</html>

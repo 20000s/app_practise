@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <title>微信JS-SDK Demo</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <style type="text/css">
+  html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  body {
+    line-height: 1.6;
+    font-family: "fangsong", Helvetica, Arial, sans-serif;
+    background-color: #f1f0f6;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  button {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    *font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  ul,
+  ol {
+    padding-left: 0;
+    list-style-type: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  .label_box {
+    background-color: #ffffff;
+  }
+  .label_item {
+    padding-left: 15px;
+  }
+  .label_inner {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 24px;
+    position: relative;
+  }
+  .label_inner:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 1px;
+    border-top: 1px solid #ededed;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    top: auto;
+    bottom: -2px;
+  }
+  .lbox_close {
+    position: relative;
+  }
+  .lbox_close:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 1px;
+    border-top: 1px solid #ededed;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  .lbox_close:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 1px;
+    border-top: 1px solid #ededed;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    top: auto;
+    bottom: -2px;
+  }
+  .lbox_close .label_item:last-child .label_inner:before {
+    display: none;
+  }
+  .btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    overflow: visible;
+    /*.btn_h(@btnHeight);*/
+    height: 42px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #ffffff;
+    line-height: 42px;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  }
+  .btn.btn_inline {
+    display: inline-block;
+  }
+  .btn_primary {
+    background-color: #437DBA;
+  }
+  .btn_primary:not(.btn_disabled):visited {
+    color: #ffffff;
+  }
+  .btn_primary:not(.btn_disabled):active {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: #3b78b9;
+  }
+  button.btn {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    -webkit-appearance: none;
+  }
+  button.btn:focus {
+    outline: 0;
+  }
+  .wxapi_container {
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 2em;
+    padding-left: 15px;
+    color: #8d8c92;
+  }
+  .desc {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 2em;
+    color: #8d8c92;
+  }
+  .wxapi_index_item a {
+    display: block;
+    color: #3e3e3e;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  .wxapi_form {
+    background-color: #ffffff;
+    padding: 0 15px;
+    margin-top: 30px;
+    padding-bottom: 15px;
+  }
+  h3 {
+    padding-top: 16px;
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #3e3e3e;
+    position: relative;
+  }
+  h3:first-child {
+    padding-top: 15px;
+  }
+  h3:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 1px;
+    border-top: 1px solid #ededed;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  .btn {
+    margin-bottom: 15px;
+  }
+
+    </style>
+</head>
+<body ontouchstart="">
+<div class="wxapi_container">
+    <div class="wxapi_index_container">
+        <ul class="label_box lbox_close wxapi_index_list">
+            <li class="label_item wxapi_index_item"><a class="label_inner"
+                                                       href="#menu-basic">基础接口</a></li>
+            <li class="label_item wxapi_index_item"><a class="label_inner"
+                                                       href="#menu-share">分享接口</a></li>
+            <li class="label_item wxapi_index_item"><a class="label_inner"
+                                                       href="#menu-image">图像接口</a></li>
+            <li class="label_item wxapi_index_item"><a class="label_inner"
+                                                       href="#menu-voice">音频接口</a></li>
+            <li class="label_item wxapi_index_item"><a class="label_inner"
+                                                       href="#menu-smart">智能接口</a></li>
+            <li class="label_item wxapi_index_item"><a class="label_inner" href="#menu-device">设备信息接口</a>
+            </li>
+            <li class="label_item wxapi_index_item"><a class="label_inner" href="#menu-location">地理位置接口</a>
+            </li>
+            <li class="label_item wxapi_index_item"><a class="label_inner" href="#menu-webview">界面操作接口</a>
+            </li>
+            <li class="label_item wxapi_index_item"><a class="label_inner"
+                                                       href="#menu-scan">微信扫一扫接口</a></li>
+            <li class="label_item wxapi_index_item"><a class="label_inner" href="#menu-shopping">微信小店接口</a>
+            </li>
+            <li class="label_item wxapi_index_item"><a class="label_inner"
+                                                       href="#menu-card">微信卡券接口</a></li>
+            <li class="label_item wxapi_index_item"><a class="label_inner"
+                                                       href="#menu-pay">微信支付接口</a></li>
+            <li class="label_item wxapi_index_item"><a class="label_inner" href="#menu-invoice">微信发票接口</a>
+            </li>
+            <li class="label_item wxapi_index_item"><a class="label_inner" href="#menu-contact">通讯录选择接口</a>
+            </li>
+            <li class="label_item wxapi_index_item"><a class="label_inner" href="#menu-openchat">创建企业会话接口</a>
+            </li>
+            <li class="label_item wxapi_index_item"><a class="label_inner" href="#menu-sendchat">向当前企业会话发送消息接口</a>
+            </li>
+            <li class="label_item wxapi_index_item"><a class="label_inner"
+                                                       href="#menu-launch3rdApp">通过企业微信调起第三方App</a>
+            </li>
+            <li class="label_item wxapi_index_item"><a class="label_inner"
+                                                       href="#menu-BioassayAuthentication">身份验证</a>
+            </li>
+            <li class="label_item wxapi_index_item"><a class="label_inner" href="#menu-bluetooth">蓝牙接口</a>
+            </li>
+        </ul>
+    </div>
+    <div class="lbox_close wxapi_form">
+        <h3 id="menu-basic">基础接口</h3>
+        <span class="desc">判断当前客户端是否支持指定JS接口</span>
+        <button class="btn btn_primary" id="checkJsApi">checkJsApi</button>
+
+        <h3 id="menu-share">分享接口</h3>
+        <span class="desc">获取“分享到朋友圈”按钮点击状态及自定义分享内容接口</span>
+        <button class="btn btn_primary" id="onMenuShareTimeline">onMenuShareTimeline</button>
+        <span class="desc">获取“分享给朋友”按钮点击状态及自定义分享内容接口</span>
+        <button class="btn btn_primary" id="onMenuShareAppMessage">onMenuShareAppMessage</button>
+        <span class="desc">获取“分享给朋友2”按钮点击状态及自定义分享内容接口</span>
+        <button class="btn btn_primary" id="onMenuShareAppMessage2">onMenuShareAppMessage2</button>
+        <span class="desc">获取“分享到QQ”按钮点击状态及自定义分享内容接口</span>
+        <button class="btn btn_primary" id="onMenuShareQQ">onMenuShareQQ</button>
+        <span class="desc">获取“分享到微信”按钮点击状态及自定义分享内容接口</span>
+        <button class="btn btn_primary" id="onMenuShareWechat">onMenuShareWechat</button>
+        <span class="desc">获取“分享到QZone”按钮点击状态及自定义分享内容接口</span>
+        <button class="btn btn_primary" id="onMenuShareQZone">onMenuShareQZone</button>
+        <span class="desc">转发</span>
+        <button class="btn btn_primary" id="shareAppMessage">shareAppMessage</button>
+        <span class="desc">转发Ex</span>
+        <button class="btn btn_primary" id="shareAppMessageEx">shareAppMessageEx</button>
+        <span class="desc">分享到微信</span>
+        <button class="btn btn_primary" id="shareWechatMessage">shareWechatMessage</button>
+        <span class="desc">个人群发</span>
+        <button class="btn btn_primary" id="shareToExternalContact">shareToExternalContact</button>
+        <span class="desc">认领班级</span>
+        <button class="btn btn_primary" id="claimClassAdmin">claimClassAdmin</button>
+        <span class="desc">分享FunView卡片给管理员</span>
+        <button class="btn btn_primary" id="ShareFunviewMessageToAdmin">ShareFunviewMessageToAdmin</button>
+        <span class="desc">学员通知</span>
+        <button class="btn btn_primary" id="shareToTrainee">shareToTrainee</button>
+
+        <h3 id="menu-image">图像接口</h3>
+        <span class="desc">拍照或从手机相册中选图接口</span>
+        <button class="btn btn_primary" id="chooseImage">chooseImage</button>
+        <span class="desc">预览图片接口</span>
+        <button class="btn btn_primary" id="previewImage">previewImage</button>
+        <span class="desc">上传图片接口</span>
+        <button class="btn btn_primary" id="uploadImage">uploadImage</button>
+        <span class="desc">下载图片接口</span>
+        <button class="btn btn_primary" id="downloadImage">downloadImage</button>
+        <span class="desc">previewFile</span>
+        <button class="btn btn_primary" id="previewFile">previewFile</button>
+
+        <h3 id="menu-voice">音频接口</h3>
+        <span class="desc">开始录音接口</span>
+        <button class="btn btn_primary" id="startRecord">startRecord</button>
+        <span class="desc">停止录音接口</span>
+        <button class="btn btn_primary" id="stopRecord">stopRecord</button>
+        <span class="desc">播放语音接口</span>
+        <button class="btn btn_primary" id="playVoice">playVoice</button>
+        <span class="desc">暂停播放接口</span>
+        <button class="btn btn_primary" id="pauseVoice">pauseVoice</button>
+        <span class="desc">停止播放接口</span>
+        <button class="btn btn_primary" id="stopVoice">stopVoice</button>
+        <span class="desc">上传语音接口</span>
+        <button class="btn btn_primary" id="uploadVoice">uploadVoice</button>
+        <span class="desc">下载语音接口</span>
+        <button class="btn btn_primary" id="downloadVoice">downloadVoice</button>
+
+        <h3 id="menu-smart">智能接口</h3>
+        <span class="desc">识别音频并返回识别结果接口</span>
+        <button class="btn btn_primary" id="translateVoice">translateVoice</button>
+
+        <h3 id="menu-device">设备信息接口</h3>
+        <span class="desc">获取网络状态接口</span>
+        <button class="btn btn_primary" id="getNetworkType">getNetworkType</button>
+        <button class="btn btn_primary" id="getMac">getMac</button>
+
+        <h3 id="menu-location">地理位置接口</h3>
+        <span class="desc">使用微信内置地图查看位置接口</span>
+        <button class="btn btn_primary" id="openLocation">openLocation</button>
+        <span class="desc">获取地理位置接口</span>
+        <button class="btn btn_primary" id="getLocation">getLocation</button>
+
+        <h3 id="menu-webview">界面操作接口</h3>
+        <span class="desc">隐藏右上角菜单接口</span>
+        <button class="btn btn_primary" id="hideOptionMenu">hideOptionMenu</button>
+        <span class="desc">显示右上角菜单接口</span>
+        <button class="btn btn_primary" id="showOptionMenu">showOptionMenu</button>
+        <span class="desc">关闭当前网页窗口接口</span>
+        <button class="btn btn_primary" id="closeWindow">closeWindow</button>
+        <span class="desc">批量隐藏功能按钮接口</span>
+        <button class="btn btn_primary" id="hideMenuItems">hideMenuItems</button>
+        <span class="desc">批量显示功能按钮接口</span>
+        <button class="btn btn_primary" id="showMenuItems">showMenuItems</button>
+        <span class="desc">隐藏所有非基础按钮接口</span>
+        <button class="btn btn_primary" id="hideAllNonBaseMenuItem">hideAllNonBaseMenuItem</button>
+        <span class="desc">显示所有功能按钮接口</span>
+        <button class="btn btn_primary" id="showAllNonBaseMenuItem">showAllNonBaseMenuItem</button>
+        <span class="desc">设置webview可滑动</span>
+        <button class="btn btn_primary" id="setWebViewSwipeValid">setWebViewSwipeValid</button>
+        <span class="desc">设置webview不可滑动</span>
+        <button class="btn btn_primary" id="setWebViewSwipeInvalid">setWebViewSwipeInvalid</button>
+
+
+        <h3 id="menu-scan">微信扫一扫</h3>
+        <span class="desc">调起微信扫一扫接口</span>
+        <button class="btn btn_primary" id="scanQRCode0">scanQRCode(微信处理结果)</button>
+        <button class="btn btn_primary" id="scanQRCode1">scanQRCode(直接返回结果)</button>
+
+        <h3 id="menu-shopping">微信小店接口</h3>
+        <span class="desc">跳转微信商品页接口</span>
+        <button class="btn btn_primary" id="openProductSpecificView">openProductSpecificView
+        </button>
+
+        <h3 id="menu-card">微信卡券接口</h3>
+        <span class="desc">批量添加卡券接口</span>
+        <button class="btn btn_primary" id="addCard">addCard</button>
+        <span class="desc">调起适用于门店的卡券列表并获取用户选择列表</span>
+        <button class="btn btn_primary" id="chooseCard">chooseCard</button>
+        <span class="desc">查看微信卡包中的卡券接口</span>
+        <button class="btn btn_primary" id="openCard">openCard</button>
+
+        <h3 id="menu-pay">微信支付接口</h3>
+        <span class="desc">发起一个微信支付请求</span>
+        <button class="btn btn_primary" id="chooseWXPay">chooseWXPay</button>
+
+        <h3 id="menu-invoice">微信发票接口</h3>
+        <span class="desc">选择微信发票</span>
+        <button class="btn btn_primary" id="chooseInvoice">chooseInvoice</button>
+        <span class="desc">选择发票抬头</span>
+        <button class="btn btn_primary" id="chooseInvoiceTitle">chooseInvoiceTitle</button>
+
+        <h3 id="menu-contact">通讯录选择接口</h3>
+        <span class="desc">从通讯录选择联系人</span>
+        <button class="btn btn_primary" id="selectEnterpriseContact">selectEnterpriseContact
+        </button>
+        <button class="btn btn_primary" id="selectEnterpriseContact1">selectEnterpriseContact1
+        </button>
+
+        <h3 id="menu-mark_out_contact">标记外部联系人</h3>
+        <span class="desc">标记外部联系人</span>
+        <button class="btn btn_primary" id="markCustomer">selectExternalContact</button>
+
+        <h3 id="menu-ww_select_and_share">选择特别联系人并发送消息</h3>
+        <span class="desc">选择特别联系人并发送消息</span>
+        <button class="btn btn_primary" id="ww_selectContactAndShareMsg">
+            wwselectContactAndShareMsg
+        </button>
+        <button class="btn btn_primary" id="shareAppMessageToAdmin">shareAppMessageToAdmin</button>
+
+        <h3 id="menu-ww_add_select_wx">加微信</h3>
+        <span class="desc">加微信</span>
+        <button class="btn btn_primary" id="ww_addWechatContact">ww_addWechatContact</button>
+
+        <h3 id="menu-exchangeST">更新st和vid</h3>
+        <span class="desc">更新st和vid</span>
+        <button class="btn btn_primary" id="exchangeST">exchangeST</button>
+
+        <h3 id="menu-openchat">创建企业会话接口</h3>
+        <span class="desc">创建企业会话</span>
+        <button class="btn btn_primary" id="openEnterpriseChat">openEnterpriseChat</button>
+
+        <h3 id="menu-open_publish_window">乐享发起帖子</h3>
+        <span class="desc">乐享发起帖子</span>
+        <button class="btn btn_primary" id="openPublishWindow">openPublishWindow</button>
+        <button class="btn btn_primary" id="openReplyPanel">openReplyPanel</button>
+
+        <h3 id="menu-sendchat">向当前企业会话发送消息接口</h3>
+        <span class="desc">向当前企业会话发送消息</span>
+        <button class="btn btn_primary" id="sendEnterpriseChat_text">sendEnterpriseChat(text)
+        </button>
+        <button class="btn btn_primary" id="sendEnterpriseChat_link">sendEnterpriseChat(link)
+        </button>
+
+        <h3 id="menu-launch3rdApp">通过企业微信调起第三方App</h3>
+        <span class="desc">通过企业微信调起第三方App</span>
+        <button class="btn btn_primary" id="launch3rdApp">launch3rdApp</button>
+
+        <h3 id="menu-uploadLog">上传日志</h3>
+        <span class="desc">上传日志</span>
+        <button class="btn btn_primary" id="uploadLog">uploadLog</button>
+
+        <h3 id="menu-launchApplication">打开app</h3>
+        <span class="desc">打开app</span>
+        <button class="btn btn_primary" id="launchApplication">launchApplication</button>
+
+        <h3 id="menu-conversation">选择会话</h3>
+        <span class="desc">选择会话</span>
+        <button class="btn btn_primary" id="convSelectAction">convSelectAction</button>
+
+        <h3 id="menu-newCheckinRule">新建打卡规则</h3>
+        <span class="desc">新建打卡规则</span>
+        <button class="btn btn_primary" id="newCheckinRule">newCheckinRule</button>
+
+        <h3 id="menu-scanBusinessCard">扫描名片</h3>
+        <span class="desc">扫描名片</span>
+        <button class="btn btn_primary" id="scanBusinessCard">scanBusinessCard</button>
+
+        <h3 id="menu-BioassayAuthentication">身份验证</h3>
+        <br>姓名<br>
+        <input id="authName" type="text" name="firstname" value="小王">
+        <br>
+        <br>身份证<br>
+        <input id="authCardId" type="text" name="lastname" value="514512848234434">
+        <br><br>
+        <span class="desc">身份验证</span>
+        <button class="btn btn_primary" id="BioassayAuthentication">BioassayAuthentication</button>
+        <button class="btn btn_primary" id="idcardVerify">idcardVerify</button>
+        <button class="btn btn_primary" id="openWxBusinessUrl">openWxBusinessUrl</button>
+        <button class="btn btn_primary" id="bioassayFaceCompare">bioassayFaceCompare</button>
+        <button class="btn btn_primary" id="selectLocation">selectLocation</button>
+        <button class="btn btn_primary" id="selectGroupChat">selectGroupChat</button>
+
+        <button class="btn btn_primary" id="jumpToWXTimelineTrial">jumpToWXTimelineTrial</button>
+        <button class="btn btn_primary" id="forwardBySchoolNotification">
+            forwardBySchoolNotification
+        </button>
+        <button class="btn btn_primary" id="selectHomeSchoolNode">selectHomeSchoolNode</button>
+        <button class="btn btn_primary" id="openSchoolNodeProfile">openSchoolNodeProfile</button>
+        <button class="btn btn_primary" id="shareImageToWechat">shareImageToWechat</button>
+        <button class="btn btn_primary" id="jumpToRenewalByMobile">jumpToRenewalByMobile</button>
+        <button class="btn btn_primary" id="showWebviewRightMenu">showWebviewRightMenu</button>
+        <h3 id="menu-bluetooth">蓝牙接口</h3>
+        <span class="desc">打开蓝牙适配器</span>
+        <button class="btn btn_primary" id="openBluetoothAdapter">openBluetoothAdapter</button>
+        <span class="desc">关闭蓝牙适配器</span>
+        <button class="btn btn_primary" id="closeBluetoothAdapter">closeBluetoothAdapter</button>
+        <span class="desc">获取蓝牙适配器状态</span>
+        <button class="btn btn_primary" id="getBluetoothAdapterState">getBluetoothAdapterState
+        </button>
+        <span class="desc">监听蓝牙适配器状态变化</span>
+        <button class="btn btn_primary" id="onBluetoothAdapterStateChange">
+            onBluetoothAdapterStateChange
+        </button>
+        <span class="desc">获取蓝牙列表</span>
+        <button class="btn btn_primary" id="startBluetoothDevicesDiscovery">
+            startBluetoothDevicesDiscovery
+        </button>
+        <span class="desc">停止获取蓝牙列表</span>
+        <button class="btn btn_primary" id="stopBluetoothDevicesDiscovery">
+            stopBluetoothDevicesDiscovery
+        </button>
+        <span class="desc">获取发现的蓝牙列表</span>
+        <button class="btn btn_primary" id="getBluetoothDevices">getBluetoothDevices</button>
+        <span class="desc">监听寻找到的新设备</span>
+        <button class="btn btn_primary" id="onBluetoothDeviceFound">onBluetoothDeviceFound</button>
+        <span class="desc">根据uuid获取已连接状态的设备</span>
+        <button class="btn btn_primary" id="getConnectedBluetoothDevices">
+            getConnectedBluetoothDevices
+        </button>
+        <span class="desc">连接低功耗蓝牙设备</span>
+        <button class="btn btn_primary" id="createBLEConnection">createBLEConnection</button>
+        <span class="desc">断开与低功耗蓝牙设备的连接</span>
+        <button class="btn btn_primary" id="closeBLEConnection">closeBLEConnection</button>
+        <span class="desc">监听低功耗蓝牙连接的错误事件，包括设备丢失，连接异常断开等等</span>
+        <button class="btn btn_primary" id="onBLEConnectionStateChange">onBLEConnectionStateChange
+        </button>
+        <span class="desc">获取蓝牙设备所有 service</span>
+        <button class="btn btn_primary" id="getBLEDeviceServices">getBLEDeviceServices</button>
+        <span class="desc">获取蓝牙设备某个服务中的所有 characteristic（特征值）</span>
+        <button class="btn btn_primary" id="getBLEDeviceCharacteristics">
+            getBLEDeviceCharacteristics
+        </button>
+        <span class="desc">读取低功耗蓝牙设备的特征值的二进制数据值</span>
+        <button class="btn btn_primary" id="readBLECharacteristicValue">readBLECharacteristicValue
+        </button>
+        <span class="desc">向低功耗蓝牙设备特征值中写入二进制数据</span>
+        <button class="btn btn_primary" id="writeBLECharacteristicValue">
+            writeBLECharacteristicValue
+        </button>
+        <span class="desc">启用低功耗蓝牙设备特征值变化时的 notify 功能，订阅特征值</span>
+        <button class="btn btn_primary" id="notifyBLECharacteristicValueChange">
+            notifyBLECharacteristicValueChange
+        </button>
+        <span class="desc">监听低功耗蓝牙设备的特征值变化</span>
+        <button class="btn btn_primary" id="onBLECharacteristicValueChange">
+            onBLECharacteristicValueChange
+        </button>
+        <span class="desc">startWifi</span>
+        <button class="btn btn_primary" id="startWifi">startWifi</button>
+        <span class="desc">onGetWifiList</span>
+        <button class="btn btn_primary" id="onGetWifiList">onGetWifiList</button>
+        <span class="desc">getWifiList</span>
+        <button class="btn btn_primary" id="getWifiList">getWifiList</button>
+        <span class="desc">connectWifi</span>
+        <button class="btn btn_primary" id="connectWifi">connectWifi</button>
+        <span class="desc">getConnectedWifi</span>
+        <button class="btn btn_primary" id="getConnectedWifi">getConnectedWifi</button>
+        <span class="desc">stopWifi</span>
+        <button class="btn btn_primary" id="stopWifi">stopWifi</button>
+
+        <span class="desc">startVPN</span>
+        <button class="btn btn_primary" id="startVPN">startVPN</button>
+        <span class="desc">isVPNOnline</span>
+        <button class="btn btn_primary" id="isVPNOnline">isVPNOnline</button>
+        <span class="desc">stopVPN</span>
+        <button class="btn btn_primary" id="stopVPN">stopVPN</button>
+        <span class="desc">setClipboardData</span>
+        <button class="btn btn_primary" id="setClipboardData">setClipboardData</button>
+        <span class="desc">getClipboardData</span>
+        <button class="btn btn_primary" id="getClipboardData">getClipboardData</button>
+        <button class="btn btn_primary" id="onNetworkStatusChange">onNetworkStatusChange</button>
+        <button class="btn btn_primary" id="close">close</button>
+
+        <button class="btn btn_primary" id="startAutoLBS">startAutoLBS</button>
+        <button class="btn btn_primary" id="stopAutoLBS">stopAutoLBS</button>
+        <button class="btn btn_primary" id="onLocationChange">onLocationChange</button>
+        <span class="desc" id="onLocationChanged" style="word-break: break-word;"></span>
+
+        <button class="btn btn_primary" id="discoverDevice_qr">discoverDevice_qr</button>
+        <button class="btn btn_primary" id="discoverDevice_bl">discoverDevice_bl</button>
+        <button class="btn btn_primary" id="discoverDevice_sn">discoverDevice_sn</button>
+        <button class="btn btn_primary" id="discoverDevice_choose">discoverDevice_choose</button>
+        <button class="btn btn_primary" id="injectBLEJsInterface">injectBLEJsInterface</button>
+        <button class="btn btn_primary" id="OpenInviteTeamColleagueRecommend">
+            OpenInviteTeamColleagueRecommend
+        </button>
+    </div>
+</div>
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+
+
+/*<!--var jsApiFun = function(){
+	alert('dsdsdf');
+	WeixinJSBridge.call('closeWindow');
+}
+if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function"){
+	jsApiFun();
+}
+else if(document.attachEvent) {
+ document.attachEvent("WeixinJSBridgeReady", jsApiFun);
+}
+else if(document.addEventListener){
+ document.addEventListener("WeixinJSBridgeReady", jsApiFun);
+}-->*/
+  /*
+   * 注意：
+   * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+   * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+   * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+   *
+   * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+   * 邮箱地址：weixin-open@qq.com
+   * 邮件主题：【微信JS-SDK反馈】具体问题
+   * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+   */
+  wx.config({
+      debug: true,
+      appId: 'wxf8b4f85f3a794e77',
+      timestamp: 1468911915,
+      nonceStr: 'vB8ZT0q5hcH9eN2u',
+      signature: 'dfa9cd2aef5d2e80849e0b7bb7fda295416c3e1c',
+      jsApiList: [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareWechat',
+        'shareAppMessage',
+        'shareAppMessageEx',
+        'shareWechat',
+        'shareWechatMessage',
+        'shareToExternalContact',
+        'shareToTrainee',
+        'openToShareAppMessage',
+        'launchApplication',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'onMenuShareQZone',
+        'hideMenuItems',
+        'showMenuItems',
+        'hideAllNonBaseMenuItem',
+        'showAllNonBaseMenuItem',
+        'setWebSwipeEnable',
+        'translateVoice',
+        'startRecord',
+        'stopRecord',
+        'onVoiceRecordEnd',
+        'playVoice',
+        'onVoicePlayEnd',
+        'pauseVoice',
+        'stopVoice',
+        'newCheckinRule',
+        'scanBusinessCard',
+        'BioassayAuthentication',
+        'idcardVerify',
+        'uploadVoice',
+        'downloadVoice',
+        'chooseImage',
+        'previewImage',
+        'uploadImage',
+        'downloadImage',
+        'getNetworkType',
+        'openLocation',
+        'getLocation',
+        'hideOptionMenu',
+        'showOptionMenu',
+        'closeWindow',
+        'scanQRCode',
+        'chooseWXPay',
+        'chooseInvoice',
+        'chooseInvoiceTitle',
+        'openProductSpecificView',
+        'addCard',
+        'chooseCard',
+        'openCard',
+        'selectEnterpriseContact',
+        'selectExternalContact',
+        'wx.ww_selectContactAndShareMsg',
+        'wx.ww_addWechatContact',
+        'wx.exchangeST',
+        'openEnterpriseChat',
+        'openPublishWindow',
+        'openReplyPanel',
+        'sendEnterpriseChat',
+        'selectHistoryMessages',
+        'openBluetoothAdapter',
+        'closeBluetoothAdapter',
+        'getBluetoothAdapterState',
+        'onBluetoothAdapterStateChange',
+        'startBluetoothDevicesDiscovery',
+        'stopBluetoothDevicesDiscovery',
+        'getBluetoothDevices',
+        'onBluetoothDeviceFound',
+        'getConnectedBluetoothDevices',
+        'createBLEConnection',
+        'closeBLEConnection',
+        'onBLEConnectionStateChange',
+        'getBLEDeviceServices',
+        'getBLEDeviceCharacteristics',
+        'readBLECharacteristicValue',
+        'writeBLECharacteristicValue',
+        'notifyBLECharacteristicValueChange',
+        'onBLECharacteristicValueChange',
+        'getWifiList',
+        'onGetWifiList',
+        'startWifi',
+        'stopWifi',
+        'startVPN',
+        'isVPNOnline',
+        'stopVPN',
+        'wwapp.openWxBusinessUrl',
+        'wwapp.shareAppMessageToAdmin',
+        'bioassayFaceCompare',
+        'wwapp.selectLocation',
+        'wwapp.selectGroupChat',
+        'wwapp.jumpToWXTimelineTrial',
+        'wwapp.forwardBySchoolNotification',
+        'wwapp.selectHomeSchoolNode',
+        'wwapp.openSchoolNodeProfile',
+        'wwapp.shareImageToWechat',
+        'wwapp.jumpToRenewalByMobile',
+        'wwapp.showWebviewRightMenu',
+        'wwapp.util.openInviteTeamColleagueRecommend',
+        'claimClassAdmin',
+        'ShareFunviewMessageToAdmin'
+      ]
+  });
+
+</script>
+<script src="https://open.work.weixin.qq.com/wwopen/static/js/3rd/zepto.min.js"></script>
+<script src="https://open.work.weixin.qq.com/wwopen/static/js/jsapi/demo.js"></script>
+<script>
+    document.querySelector('#selectEnterpriseContact').onclick = function() {
+        WeixinJSBridge.invoke("selectEnterpriseContact", {
+                              "fromDepartmentId" : "0",
+                              "mode" : "multi",
+                              "type" : ['department', 'user'],
+                              "selectedDepartmentIds" : [13, 3, 19],
+                              "selectedUserIds" : ["cvd", "aniszhang"],
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+    document.querySelector('#selectEnterpriseContact1').onclick = function() {
+        WeixinJSBridge.invoke("selectEnterpriseContact", {
+                              "fromDepartmentId" : "-1",
+                              "mode" : "multi",
+                              "type" : ['department', 'user'],
+                              "selectedDepartmentIds" : [13, 3, 19],
+                              "selectedUserIds" : ["cvd", "aniszhang"],
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+</script>
+<script>
+    document.querySelector('#markCustomer').onclick = function() {
+        WeixinJSBridge.invoke("selectExternalContact", {
+                                    "filterType": 0,
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+</script>
+<script>
+    document.querySelector('#ww_selectContactAndShareMsg').onclick = function() {
+        WeixinJSBridge.invoke("wx.ww_selectContactAndShareMsg", {
+                              "select_mode":"1",
+                              "title":"微信互通内测申请",
+                              "desc":"testing",
+                              "link":"https://work.weixin.qq.com/wework_admin/ww_mt/input?meeting_id=63&from=appmanage",
+                              "imgUrl":"http://img1.gtimg.com/2016/pics/hv1/184/37/2110/137212369.jpg",
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+</script>
+<script>
+    document.querySelector('#ww_addWechatContact').onclick = function() {
+        WeixinJSBridge.invoke("wx.ww_addWechatContact", {
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+</script>
+
+<script>
+    document.querySelector('#exchangeST').onclick = function() {
+        WeixinJSBridge.invoke("wx.exchangeST", {
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+</script>
+
+<script>
+    document.querySelector('#chooseImage').onclick = function() {
+    WeixinJSBridge.invoke("chooseImage", {
+                        "sourceType" : ["album", "camera", "continuous"],
+                        "sizeType" : ["original"],
+                        "defaultCameraMode": "batch_front",
+                        "isSaveToAlbum": 1,
+                        "count" : 50
+                        }, function(res) {
+                        $('#captured').attr('src',JSON.parse(res.localIds)[0]);
+                        alert(JSON.stringify(res));
+                        })
+    }
+    document.querySelector('#previewImage').onclick = function(){
+    WeixinJSBridge.invoke("imagePreview", {
+                        pagecontrol: true,
+                        current: 'http://img1.gtimg.com/2016/pics/hv1/184/37/2110/137212369.jpg',
+                        urls: ['http://img1.gtimg.com/2016/pics/hv1/184/37/2110/137212369.jpg','http://img1.gtimg.com/2016/pics/hv1/196/109/2110/137230741.jpg','http://img1.gtimg.com/17/1710/171079/17107918_980x1200_292.jpg','http://vjfile1.oss-cn-qingdao.aliyuncs.com/2.jpeg/album300','https://p.qpic.cn/pic_wework/3478722865/74727d7d1a8efb5526f53c0c8e29209f9a27ea19a88b9bec/290']
+                        });
+    }
+
+   document.querySelector('#previewFile').onclick = function(){
+    WeixinJSBridge.invoke("previewFile", {
+                        name: "test",
+                        url: 'http://120.26.233.39:5084/58/5cbc5d4fd852/新建 Microsoft Excel 工作表.xlsx',
+                        size: 10496
+                        });
+    }
+
+
+</script>
+<script>
+        document.querySelector('#chooseInvoiceTitle').onclick = function() {
+            WeixinJSBridge.invoke("chooseInvoiceTitle", {
+                                  "scene" : "1"
+                }, function(res) {
+                alert(JSON.stringify(res));
+                })
+        }
+
+</script>
+<script>
+    document.querySelector('#chooseInvoice').onclick = function() {
+        WeixinJSBridge.invoke("chooseInvoice", {
+                              "appId" : "wxab249edd27d57738",
+                              "cardSign" : "91ff710002c55498368e66469bb4c5d2fd44b592",
+                              "nonceStr" : "muXSXwdWzfrvBnca",
+                              "signType" : "SHA1",
+                              "timestamp" : "1499236000"
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+</script>
+<script>
+    // 调起第三方应用
+    document.querySelector('#launch3rdApp').onclick = function() {
+        WeixinJSBridge.invoke("launch3rdApp", {
+                              "appID": "wxf4b42938cba94b7e",    // 必填
+                              "messageExt": "{\"url\":\"jike://page.jk/message/590758b054d5f10012e8e683\",\"from\":\"wechat\"}",
+                              "appName": "即刻"
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+
+    }
+    // 发送文本消息
+    document.querySelector('#sendEnterpriseChat_text').onclick = function() {
+        WeixinJSBridge.invoke("sendEnterpriseChat", {
+                              "type": "text",    // 必填，text表示发送的内容是文字
+                              "data": {
+                              "content": "text sent to enterprise chat",    // 必填，表示发送的文字内容
+                              }
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+    // 发送链接消息
+    document.querySelector('#sendEnterpriseChat_link').onclick = function() {
+        WeixinJSBridge.invoke("sendEnterpriseChat", {
+                              "type": "link",    // 必填，link表示发送的内容是链接
+                              "data": {
+                              "imgUrl": "http://shp.qpic.cn/bizmp/PiajxSqBRaEJ60dDSjCqczZFTTHsyX5MvxibUq1L3jwokHORAYOV0OdQ/",    // 必填，表示消息的图标
+                              "title": "test title",    // 非必填，但与desc不能同时为空
+                              "desc": "test desc",    // 非必填，但与title不能同时为空
+                              "link": "http://qy.weixin.qq.com",    // 必填，表示消息的链接
+                              }
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+</script>
+
+<script>
+    document.querySelector('#openEnterpriseChat').onclick = function() {
+       WeixinJSBridge.invoke("openEnterpriseChat", {
+                             userIds: '124123;200;11970000694;11000000200',    // 必填，参与会话的成员列表。格式为userid1;userid2;...，用分号隔开，最大限制为1000个。userid单个时为单聊，多个时为群聊。
+                             groupName: 'openEnterpriseChat讨论组',  // 必填，会话名称。单聊时该参数传入空字符串""即可。
+                             success: function(res) {
+                             // 回调
+                             alert(JSON.stringify(res));
+                             },
+                             fail: function(res) {
+                             if(res.errMsg.indexOf('function not exist') > -1){
+                             alert('版本过低请升级')
+                             } else {
+                             alert(JSON.stringify(res));
+                             }
+                             }
+                             });
+                             };
+<!--wx.openEnterpriseChat({-->
+    <!--userIds: 'zhangshan;lisi;wangwu',    // 必填，参与会话的成员列表。格式为userid1;userid2;...，用分号隔开，最大限制为2000个。userid单个时为单聊，多个时为群聊。-->
+    <!--groupName: 'openEnterpriseChat讨论组',  // 必填，会话名称。单聊时该参数传入空字符串""即可。-->
+    <!--success: function(res) {-->
+        <!--// 回调-->
+    <!--},-->
+    <!--fail: function(res) {-->
+        <!--if(res.errMsg.indexOf('function not exist') > -1){-->
+            <!--alert('版本过低请升级')-->
+        <!--}-->
+    <!--}-->
+<!--});                              -->
+
+</script>
+
+<script>
+  document.querySelector('#convSelectAction').onclick = function() {
+        WeixinJSBridge.invoke("convSelectAction", {
+
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+</script>
+
+<script>
+    document.querySelector('#onMenuShareWechat').onclick = function() {
+        wx.onMenuShareWechat({
+            title: "分享到微信啊啊啊啊",
+            desc: "分享到微信啊啊啊啊",
+            link: "sports.qq.com",
+            imgUrl: "http://img3.douban.com/view/movie_poster_cover/spst/public/p2166127561.jpg",
+            trigger: function (res) {
+                console.log('onMenuShareWechat trigger');
+            },
+            complete: function(res) {
+                console.log('onMenuShareWechat complete');
+            },
+            success: function (res) {
+                console.log('onMenuShareWechat success');
+            },
+            cancel: function (res) {
+                console.log('onMenuShareWechat cancel');
+            },
+            fail: function (res) {
+                console.log(JSON.stringify(res));
+            }
+        })
+    }
+
+</script>
+
+<script>
+    document.querySelector('#onMenuShareAppMessage2').onclick = function() {
+        wx.onMenuShareAppMessage({
+            title: "转发啊啊啊啊",
+            desc: "转发啊啊啊啊",
+            link: "sports.qq.com",
+            imgUrl: "http://img3.douban.com/view/movie_poster_cover/spst/public/p2166127561.jpg",
+            trigger: function () {
+                console.log('onMenuShareAppMessage trigger');
+            },
+            complete: function(res) {
+                console.log('onMenuShareAppMessage complete');
+            },
+            success: function (res) {
+                console.log('onMenuShareAppMessage success');
+            },
+            cancel: function (res) {
+                console.log('onMenuShareAppMessage cancel');
+            },
+            fail: function (res) {
+                console.log(JSON.stringify(res));
+            }
+        })
+    }
+
+</script>
+
+<script>
+    document.querySelector('#openPublishWindow').onclick = function() {
+        WeixinJSBridge.invoke("openPublishWindow", {
+<!--          title : {-->
+<!--            text : '预填文本',-->
+<!--            placeholder : '提示文案预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本',-->
+<!--            maxlength : 0, // 0表示无限制-->
+<!--            required : true // 默认值false-->
+<!--          }, // 如果不包含title字段，表示不需要标题-->
+          content : {
+            text : '预填文本',
+            placeholder : '提示文案',
+            maxlength : 20, // 0表示无限制
+            required : true // 默认值false
+          },
+          imagecount : 9, // 0表示不支持上传图片
+        }, function(res) {
+          alert(JSON.stringify(res));
+        })
+    }
+
+</script>
+
+<script>
+    document.querySelector('#openReplyPanel').onclick = function() {
+        WeixinJSBridge.invoke("openReplyPanel", {
+          content : {
+            text : '预填文本预填文本预填文本预填文本预填文本预填文本',
+            placeholder : '提示文案预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本预填文本',
+            maxlength : 0, // 0表示无限制
+          },
+        }, function(res) {
+          alert(JSON.stringify(res));
+        })
+    }
+
+</script>
+
+
+<!--<script>-->
+<!--document.querySelector('#onVoiceRecordEnd').onclick = function() {-->
+<!--wx.onVoiceRecordEnd({-->
+<!--complete: function (res) {-->
+<!--voice.localId = res.localId;-->
+<!--alert('录音时间已超过一分钟');-->
+<!--}-->
+<!--});-->
+<!--}-->
+<!--</script>-->
+<!--<script>-->
+<!--document.querySelector('#onVoicePlayEnd').onclick = function() {-->
+<!--// 4.8 监听录音播放停止-->
+<!--wx.onVoicePlayEnd({-->
+<!--complete: function (res) {-->
+<!--alert('录音（' + res.localId + '）播放结束');-->
+<!--}-->
+<!--});-->
+<!--}-->
+<!--</script>-->
+<script>
+        document.querySelector('#uploadLog').onclick = function() {
+            WeixinJSBridge.invoke("uploadLog", {
+                                  "scene" : "1"
+                }, function(res) {
+                WeixinJSBridge.invoke("openUrl", {
+                                  "url" : "www.baidu.com",
+                                  "showProgressBar" : true,
+                                  "hideMoreBtn" : false
+                }, function(res) {
+
+                })
+                setTimeout(function(){alert(JSON.stringify(res));}, 100);
+                })
+        }
+        document.querySelector('#shareWechatMessage').onclick = function() {
+            WeixinJSBridge.invoke("shareWechatMessage", {
+                                  title: "转发啊啊啊啊",
+            desc: "转发啊啊啊啊",
+            link: "sports.qq.com",
+            imgUrl: "http://img3.douban.com/view/movie_poster_cover/spst/public/p2166127561.jpg"
+                }, function(res) {
+                alert(JSON.stringify(res));
+                })
+        }
+        document.querySelector('#shareAppMessage').onclick = function() {
+            WeixinJSBridge.invoke("shareAppMessage", {
+                                  title: "转发啊啊啊啊",
+            desc: "转发啊啊啊啊",
+            link: "sports.qq.com",
+            imgUrl: "http://img3.douban.com/view/movie_poster_cover/spst/public/p2166127561.jpg",
+            filterType: 0
+                }, function(res) {
+                alert(JSON.stringify(res));
+                })
+        }
+
+        document.querySelector('#shareAppMessageEx').onclick = function() {
+            WeixinJSBridge.invoke("shareAppMessageEx", {
+                                  title: "转发Ex",
+            desc: "转发Ex",
+            link: "sports.qq.com",
+            selectedUserIds: ['1688853268333610','1688853268321387'],
+            imgUrl: "http://img3.douban.com/view/movie_poster_cover/spst/public/p2166127561.jpg"
+                }, function(res) {
+                alert(JSON.stringify(res));
+                })
+        }
+        document.querySelector('#shareToExternalContact').onclick = function() {
+            WeixinJSBridge.invoke("shareToExternalContact", {
+                text: {
+            content:"25257758",    // 文本内容1
+        },
+         attachments: [
+          {
+                  msgtype: "image",    // 消息类型，必填
+                  image: {
+                        imgUrl: "http://img1.gtimg.com/2016/pics/hv1/184/37/2110/137212369.jpg",        // 图片的imgUrl,跟图片mediaid填其中一个即可
+                  },
+            },
+             {
+                  msgtype: "image",    // 消息类型，必填
+                  image: {
+                        imgUrl: "http://shp.qpic.cn/bizmp/PiajxSqBRaEJ60dDSjCqczZFTTHsyX5MvxibUq1L3jwokHORAYOV0OdQ/",        // 图片的imgUrl,跟图片mediaid填其中一个即可
+                  },
+            },
+
+            {
+                  msgtype: "image",    // 消息类型，必填
+                  image: {
+                        mediaid: "3F7DnvNzFEw-tGhUqYTzw09yfmy_qENDNwbLpR28mHb8HY4jcGa0kndKLpQY3_ns2",      // 图片的素材id
+                        imgUrl: "",        // 图片的imgUrl,跟图片mediaid填其中一个即可
+                  },
+            },
+         {
+                  msgtype: "video",    // 消息类型，必填
+                  video:{
+                        mediaid:"3056uKZGI36R8iZxmuSZScWFJ0d7kdKsD8S2QVGK57IZW2IFNyGI758P269nLm85P",        // 视频的素材id
+                 },
+            },
+         {
+                  msgtype: "miniprogram",    // 消息类型，必填
+                  miniprogram: {
+                        appid: "wxcb147e05f021f969",    // 小程序的appid
+                        title: "测试下哦成",        // 小程序消息的title
+                        imgUrl : "http://wx.qlogo.cn/mmhead/Q3auHgzwzM4mrtf6jD6yfW2ic6Nf83bicAVHeTe3PgSFE7mswIm2ZLIA/0",    //小程序消息的封面图。必须带http或者https协议头，否则报错 $apiName$:fail invalid imgUrl
+                        page: "/pages/shop/index/index?",        //小程序消息打开后的路径，注意要以.html作为后缀，否则在微信端打开会提示找不到页面
+                  },
+            },
+         ]
+
+
+
+                }, function(res) {
+                alert(JSON.stringify(res));
+                })
+        }
+
+        document.querySelector('#shareToTrainee').onclick = function() {
+            WeixinJSBridge.invoke("shareToTrainee", {
+              text: {
+                 content:"25257758",    // 文本内容1
+              },
+              attachments: [ // 附件列表，当前仅支持一个附件
+                      {
+                            msgtype: "image",    // 消息类型，必填
+                            image:{
+                                  imgUrl: "http://img1.gtimg.com/2016/pics/hv1/184/37/2110/137212369.jpg",
+                           },
+                      },
+                ]
+                }, function(res) {
+                alert(JSON.stringify(res));
+                })
+        }
+
+        document.querySelector('#launchApplication').onclick = function() {
+            WeixinJSBridge.invoke("launchApplication",{
+                "appName":"微信",//企业微信唤起应用显示的名称
+                "packageID":"wechat",//企业微信IOS使用，要启动应用的scheme
+                "parameter":"from=weixin_webview",//IOS使用此参数。企业微信IOS会将packageID参数与之组合成：packageID://parameter后通过系统接口拉起第三方app。中文或特殊字符需要encode
+                "packageName":"com.tencent.mm",//企业微信Andriod使用，要启动应用的包名称
+                "extraParam":"webview",//Android使用此参数，第三方应用自定义简单数据。企业微信Anriod会回传给第三方应用处理，jssdk模式下可以结合packageName使用该参数。
+                }, function(res) {
+                alert(JSON.stringify(res));
+                })
+        }
+       document.querySelector('#scanQRCode0').onclick = function() {
+            WeixinJSBridge.invoke("scanQRCode", {
+                desc: 'scanQRCode desc',
+                needResult: 0, // 默认为0，扫描结果由企业微信处理，1则直接返回扫描结果，
+                scanType: ["qrCode"] // 可以指定扫二维码还是一维码，默认二者都有
+                },function(res) {
+                alert(JSON.stringify(res));
+                })
+        }
+
+        function scanQRCode1Cb(res) {
+          if(res.err_msg == "scanQRCode:ok"){
+              scanQRCode1();
+          }
+        
+        }
+
+        function scanQRCode1() {
+          WeixinJSBridge.invoke("scanQRCode", {
+             desc: 'scanQRCode desc',
+                needResult: 1, // 默认为0，扫描结果由企业微信处理，1则直接返回扫描结果，
+                scanType: ["barCode"] // 可以指定扫二维码还是一维码，默认二者都有
+                },scanQRCode1Cb);
+        }
+
+        document.querySelector('#scanQRCode1').onclick = function() {
+            scanQRCode1();
+        }
+        document.querySelector('#claimClassAdmin').onclick = function() {
+            WeixinJSBridge.invoke("claimClassAdmin", {
+                },function(res) {
+                alert(JSON.stringify(res));
+                })
+        }
+        document.querySelector('#ShareFunviewMessageToAdmin').onclick = function() {
+            WeixinJSBridge.invoke("wwapp.shareFunviewMessageToAdmin", {
+            desc: '申请开通腾讯HR助手',
+            inputPlaceholder: '申请理由...',
+            buttonText: '申请',
+            businessId: 1,
+            msgData: '{"card_type":"button_interaction","source":{"icon_url":"https://wework.qpic.cn/wwpic/121097_WDQOuyXIRxGdLp6_1606792177/0","desc":"V校智慧校园"},"main_title":{"title":"应用付费提醒","desc":"“V校智慧校园”应用已到使用期限，请升级到付费版本。"},"button_list":[{"text":"升级为付费版本","style":1,"type":2,"schema":{"mobile_schema_url":"wxwork://appstore_update?open_case_id=slna34365f5c4b8b643","min_version_ios":"3.1.8"},"url":"https://work.weixin.qq.com/wework_admin/frame#apps/third/industry/auth?open_case_id=slna34365f5c4b8b643&authType=Charge"}],"button_column_cnt":1,"b_has_avatar":1}'
+                },function(res) {
+                alert(JSON.stringify(res));
+                })
+        }
+
+
+</script>
+
+<script>
+     document.querySelector('#newCheckinRule').onclick = function() {
+        WeixinJSBridge.invoke("newCheckinRule", {
+                              'deviceid' : "6500028633741004545",
+                              'corpid' : "1970325060981316",
+                              'vid' : "1688852589343473",
+                              'option_group' :   {
+                                'isappset' : true,
+                                'groupname' : '云考勤规则',
+                                'checkindate' : [{
+                                               'workdays': [1, 2, 3, 4, 5],
+                                               'checkintime'  : [{
+                                                             'index': 0,
+                                                             'work_sec' : 32400,
+                                                             'off_work_sec' : 64800
+                                                             }],
+                                               'limit_aheadtime'  : '1'
+                                             }],
+                                'range': {
+                                    'party_id'    : ["1688850203314173" , "1688850203335194"],
+                                    'vid' : [ "1688850203303993", "1688850203313733"]
+                                },
+                                'sync_holidays'   : true,
+                                'allow_checkin_offworkday' : false
+                              }
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+      }
+
+</script>
+
+<script>
+     document.querySelector('#scanBusinessCard').onclick = function() {
+        WeixinJSBridge.invoke("scanBusinessCard", {}, function(res) {
+                              alert(JSON.stringify(res));
+          });
+      }
+
+</script>
+
+<script>
+     document.querySelector('#BioassayAuthentication').onclick = function() {
+        WeixinJSBridge.invoke("bioassayAuthentication", {
+                            'name' : document.getElementById('authName').value,
+                            'idcard' : document.getElementById('authCardId').value}, function(res) {
+                              alert(JSON.stringify(res));
+          });
+      }
+      document.querySelector('#idcardVerify').onclick = function() {
+        WeixinJSBridge.invoke("idcardVerify", {
+                            'name' : document.getElementById('authName').value,
+                            'idcard' : document.getElementById('authCardId').value}, function(res) {
+                              alert(JSON.stringify(res));
+          });
+      }
+
+</script>
+<script>
+     document.querySelector('#openWxBusinessUrl').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.openWxBusinessUrl", {
+            'type': 11,
+            'query': {
+             'key1': 'value1',
+             'key2': 'value2'
+            }
+        }, function(res) {
+                 alert(JSON.stringify(res));
+          });
+      }
+
+</script>
+<script>
+     document.querySelector('#shareAppMessageToAdmin').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.shareAppMessageToAdmin", {
+            "title":"title",
+            "desc":"DESC",
+            "link":"www.qq.com",
+            "imgUrl":""
+        }, function(res) {
+                 alert(JSON.stringify(res));
+          })
+      }
+
+</script>
+<script>
+    document.querySelector('#ww_selectContactAndShareMsg').onclick = function() {
+        WeixinJSBridge.invoke("wx.ww_selectContactAndShareMsg", {
+                              "select_mode":"1",
+                              "title":"微信互通内测申请",
+                              "desc":"testing",
+                              "link":"https://work.weixin.qq.com/wework_admin/ww_mt/input?meeting_id=63&from=appmanage",
+                              "imgUrl":"http://img1.gtimg.com/2016/pics/hv1/184/37/2110/137212369.jpg",
+                              }, function(res) {
+                              alert(JSON.stringify(res));
+                              })
+    }
+
+</script>
+<script>
+     document.querySelector('#bioassayFaceCompare').onclick = function() {
+        WeixinJSBridge.invoke("bioassayFaceCompare", {}, function(res) {
+                 alert(JSON.stringify(res));
+          });
+      }
+
+</script>
+
+<script>
+     document.querySelector('#selectLocation').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.selectLocation", {
+            "pinMoveable":false,
+            "accuracy":100,
+            "longitude": 123.123,
+            "latitude": 123.123,
+            "title": '腾讯大厦',
+            "address":'成都市天府三街188号'
+         }, function(res) {
+               alert(JSON.stringify(res));
+          })
+      }
+
+</script>
+
+
+<script>
+     document.querySelector('#jumpToWXTimelineTrial').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.jumpToWXTimelineTrial", {}, function(res) {
+               alert(JSON.stringify(res));
+          })
+      }
+
+</script>
+
+<script>
+     document.querySelector('#forwardBySchoolNotification').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.forwardBySchoolNotification", {
+          title: "转发啊啊啊啊",
+          desc: "转发啊啊啊啊",
+          link: "sports.qq.com",
+          img_url: "https://inews.gtimg.com/newsapp_bt/0/11268405509/1000"
+        }, function(res) {
+               alert(JSON.stringify(res));
+          })
+      }
+
+</script>
+<script>
+     document.querySelector('#selectHomeSchoolNode').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.selectHomeSchoolNode", {
+            "partyIds": ["15481125897211385"],
+            "mode":"multi",
+            "type":["student"]
+        }, function(res) {
+               alert(JSON.stringify(res));
+          })
+      }
+
+</script>
+
+<script>
+     document.querySelector('#openSchoolNodeProfile').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.openSchoolNodeProfile", {
+            "id": "15481125897207660",
+            "type":"student"
+        }, function(res) {
+               alert(JSON.stringify(res));
+          })
+      }
+
+</script>
+
+<script>
+     document.querySelector('#shareImageToWechat').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.shareImageToWechat", {
+            "url": "https://inews.gtimg.com/newsapp_bt/0/11268405509/1000"
+        }, function(res) {
+               alert(JSON.stringify(res));
+          })
+      }
+
+</script>
+
+<script>
+     document.querySelector('#jumpToRenewalByMobile').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.jumpToRenewalByMobile", {
+
+        }, function(res) {
+               alert(JSON.stringify(res));
+          })
+      }
+
+</script>
+
+<script>
+     document.querySelector('#showWebviewRightMenu').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.showWebviewRightMenu", {
+            "menuKey":"image",
+            "menuInfo":"https://wwcdn.weixin.qq.com/node/wework/images/201912022250.6eaecb6546.png"
+        }, function(res) {
+               alert(JSON.stringify(res));
+          })
+      }
+
+</script>
+
+
+<script>
+    document.querySelector('#selectGroupChat').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.selectGroupChat", {
+            "multiSelected": true,
+            "mode": 1,
+            "maxSelectCount": 5
+        }, function(res) {
+            alert(JSON.stringify(res);
+        })
+
+    }
+
+</script>
+
+<p><a href="wxwork://room_booking_grab_by_scan_QR_code?roomid=20829148773590645">抢占会议室</a>
+<p><a href="tel:10086">tel:10086</a>
+<p><a href="sms:10086">sms:10086</a>
+<p><a href="wxwork://message?uin=1688850522843493">打开我的客服会话</a>
+<p><a href="wxwork://message?uin=1688853405150249">打开客服会话1688853405150249</a>
+<p><a href="wxwork://message?uin=1688853432862202">打开客服会话1688853432862202</a>
+<p><a href="wxwork://message?uin=1688850522843444">不支持的会话</a>
+<p><a href="http://www.qq.com">打开QQ.com</a>
+<p>Capture Image: <input type="file" accept="image/*" id="capture" capture="camera">
+<p>
+    <img src="http://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRt8Qia4lv7k3M9J1SKqKCImxJCt7j9rHYicKDI45jRPBxdzdyREWnk0ia0N5TMnMfth7SdxtzMvVgXg/0"
+         id="captured" height="200" width="auto"/>
+<p>Capture Video: <input type="file" accept="video/*" id="capture2" capture="camcorder">
+<p><video src="file:///storage/emulated/0/DCIM/WeixinWork/temp/20171016102709.mp4" controls="controls" id="captured2" height="200" width="auto"/>
+<p>Select File: <input type="file" accept="video/*" id="capture3">
+<script>
+    var input = document.querySelector('#capture');
+
+    input.onchange = function () {
+      var file = input.files[0];
+      displayAsImage(file);
+    };
+    var input3 = document.querySelector('#capture3');
+
+    input3.onchange = function () {
+      var file = input3.files[0];
+      displayAsImage(file);
+    };
+    function displayAsImage(file) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          $('#captured').attr('src',e.target.result)
+      };
+      reader.readAsDataURL(file);
+    }
+
+    var input2 = document.querySelector('#capture2');
+    input2.onchange = function () {
+      var file = input2.files[0];
+      displayAsVideo(file);
+    };
+    function displayAsVideo(file) {
+      console.log(URL.createObjectURL(file));
+      $('#captured2').attr('src',URL.createObjectURL(file))
+    }
+
+    </script>
+    <script>
+    document.querySelector('#openBluetoothAdapter').onclick = function() {
+        WeixinJSBridge.invoke("openBluetoothAdapter", {}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#closeBluetoothAdapter').onclick = function() {
+        WeixinJSBridge.invoke("closeBluetoothAdapter", {}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#getBluetoothAdapterState').onclick = function() {
+        WeixinJSBridge.invoke("getBluetoothAdapterState", {}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#onBluetoothAdapterStateChange').onclick = function() {
+        WeixinJSBridge.on("onBluetoothAdapterStateChange", function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+    document.querySelector('#startBluetoothDevicesDiscovery').onclick = function() {
+        WeixinJSBridge.invoke("startBluetoothDevicesDiscovery", {services:[],"allowDuplicatesKey" : false, "interval":100}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#stopBluetoothDevicesDiscovery').onclick = function() {
+        WeixinJSBridge.invoke("stopBluetoothDevicesDiscovery", {}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#getBluetoothDevices').onclick = function() {
+        WeixinJSBridge.invoke("getBluetoothDevices", {}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#getConnectedBluetoothDevices').onclick = function() {
+        WeixinJSBridge.invoke("getConnectedBluetoothDevices", {"services" : ["0000FEE0-0000-1000-8000-00805F9B34FB"]}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#onBluetoothDeviceFound').onclick = function() {
+        WeixinJSBridge.on("onBluetoothDeviceFound", function(res) {
+                            console(JSON.stringify(res));
+                          });
+    }
+    document.querySelector('#createBLEConnection').onclick = function() {
+        WeixinJSBridge.invoke("createBLEConnection", {"deviceId" : "43C26889-73AF-A1B9-3B57-633ECD688349"}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#closeBLEConnection').onclick = function() {
+        WeixinJSBridge.invoke("closeBLEConnection", {"deviceId" : "43C26889-73AF-A1B9-3B57-633ECD688349"}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#getBLEDeviceServices').onclick = function() {
+        WeixinJSBridge.invoke("getBLEDeviceServices", {"deviceId" : "43C26889-73AF-A1B9-3B57-633ECD688349"}, function(res) {
+                              console(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#getBLEDeviceCharacteristics').onclick = function() {
+        WeixinJSBridge.invoke("getBLEDeviceCharacteristics", {"deviceId" : "43C26889-73AF-A1B9-3B57-633ECD688349", "serviceId" : "0000FEE0-0000-1000-8000-00805F9B34FB"}, function(res) {
+                              console(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#readBLECharacteristicValue').onclick = function() {
+        WeixinJSBridge.invoke("readBLECharacteristicValue", {"deviceId" : "43C26889-73AF-A1B9-3B57-633ECD688349", "serviceId" : "0000FEE0-0000-1000-8000-00805F9B34FB", "characteristicId" : "0000FF09-0000-1000-8000-00805F9B34FB"}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+
+    function _arrayBufferToBase64( buffer ) {
+        var binary = '';
+        var bytes = new Uint8Array( buffer );
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode( bytes[ i ] );
+        }
+        return window.btoa( binary );
+    }
+
+    document.querySelector('#writeBLECharacteristicValue').onclick = function() {
+        let buffer = new ArrayBuffer(1)
+        let dataView = new DataView(buffer)
+        dataView.setUint8(0, 1)
+        WeixinJSBridge.invoke("writeBLECharacteristicValue", {"deviceId" : "43C26889-73AF-A1B9-3B57-633ECD688349", "serviceId" : "0000FEE0-0000-1000-8000-00805F9B34FB", "characteristicId" : "0000FF09-0000-1000-8000-00805F9B34FB", "value" : _arrayBufferToBase64(buffer)}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#notifyBLECharacteristicValueChange').onclick = function() {
+        WeixinJSBridge.invoke("notifyBLECharacteristicValueChange", {"deviceId" : "43C26889-73AF-A1B9-3B57-633ECD688349", "serviceId" : "0000FEE0-0000-1000-8000-00805F9B34FB", "characteristicId" : "0000FF09-0000-1000-8000-00805F9B34FB", "state" : true}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+    }
+    document.querySelector('#onBLEConnectionStateChange').onclick = function() {
+        WeixinJSBridge.on("onBLEConnectionStateChange", function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+function ab2hex(buffer) {
+  var hexArr = Array.prototype.map.call(
+    new Uint8Array(buffer),
+    function(bit) {
+      return ('00' + bit.toString(16)).slice(-2)
+    }
+  )
+  return hexArr.join('');
+}
+    document.querySelector('#onBLECharacteristicValueChange').onclick = function() {
+        WeixinJSBridge.on("onBLECharacteristicValueChange", function(res) {
+<!--                            alert(JSON.stringify(res));-->
+                          alert(`characteristic ${res.characteristicId} has changed, now is ${res.value}`)
+                          alert(ab2hext(res.value))
+                          });
+    }
+
+    document.querySelector('#onGetWifiList').onclick = function() {
+        WeixinJSBridge.on("onGetWifiList", function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+
+     document.querySelector('#getWifiList').onclick = function() {
+        WeixinJSBridge.invoke("getWifiList", function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+
+      document.querySelector('#startWifi').onclick = function() {
+        WeixinJSBridge.invoke("startWifi", function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+
+     document.querySelector('#connectWifi').onclick = function() {
+        WeixinJSBridge.invoke("connectWifi", {
+        "SSID": "Funbox",
+        "BSSID": "1e:d5:f1:59:15:37",
+        "password": "l1y2x3zz"
+        }, function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+
+
+    document.querySelector('#getConnectedWifi').onclick = function() {
+        WeixinJSBridge.invoke("getConnectedWifi", function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+      document.querySelector('#stopWifi').onclick = function() {
+        WeixinJSBridge.invoke("stopWifi", function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+
+         document.querySelector('#isVPNOnline').onclick = function() {
+        WeixinJSBridge.invoke("isVPNOnline", {'vpnUrl': "www.baidu.com", 'scheme': "sfminiconnect"}, function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+
+      document.querySelector('#startVPN').onclick = function() {
+        WeixinJSBridge.invoke("startVPN", {'vpnUrl': "www.baidu.com", 'scheme': "sfminiconnect"}, function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+
+      document.querySelector('#stopVPN').onclick = function() {
+        WeixinJSBridge.invoke("stopVPN", {'vpnUrl': "www.baidu.com", 'scheme': "sfminiconnect"}, function(res) {
+                            alert(JSON.stringify(res));
+                          });
+    }
+
+    document.querySelector('#setClipboardData').onclick = function() {
+        WeixinJSBridge.invoke("setClipboardData", {
+                              data: 'data'},
+                              function(res) {
+                                alert(JSON.stringify(res));
+                                  });
+                              }
+
+  document.querySelector('#getClipboardData').onclick = function() {
+        WeixinJSBridge.invoke("getClipboardData", {},
+                              function(res) {
+                                alert(JSON.stringify(res));
+                                });
+                               }
+  document.querySelector('#onNetworkStatusChange').onclick = function() {
+        WeixinJSBridge.on("onNetworkStatusChange", function(res) {
+                              alert(JSON.stringify(res));
+                              });
+                              }
+
+document.querySelector('#getNetworkType').onclick = function() {
+        WeixinJSBridge.invoke("getNetworkType",{}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+                              }
+document.querySelector('#getMac').onclick = function() {
+        WeixinJSBridge.invoke("getMac",{}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+                              }
+document.querySelector('#closeWindow').onclick = function(){
+     WeixinJSBridge.invoke("closeWindow",{}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+  }
+
+   document.querySelector('#setWebViewSwipeValid').onclick = function() {
+      WeixinJSBridge.invoke("setWebSwipeEnable", {'enable':"true"}, function(res) {
+                            alert(JSON.stringify(res));
+        });
+    }
+
+   document.querySelector('#setWebViewSwipeInvalid').onclick = function() {
+      WeixinJSBridge.invoke("setWebSwipeEnable", {'enable':"false"}, function(res) {
+                            alert(JSON.stringify(res));
+        });
+    }
+
+  document.querySelector('#close').onclick = function(){
+     window.close();
+  }
+  document.querySelector('#startAutoLBS').onclick = function(){
+      WeixinJSBridge.invoke("startAutoLBS",{}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+  }
+
+  document.querySelector('#stopAutoLBS').onclick = function(){
+     WeixinJSBridge.invoke("stopAutoLBS",{}, function(res) {
+                              alert(JSON.stringify(res));
+                              });
+  }
+  var ddd =document.getElementById("onLocationChanged");
+  var index = 0;
+  document.querySelector('#onLocationChange').onclick = function() {
+        WeixinJSBridge.on("auto:location:report", function(res) {
+                              ddd.innerHTML= (index++) +":"+ JSON.stringify(res);
+                              });
+                              }
+  document.querySelector('#getLocation').onclick = function() {
+        WeixinJSBridge.invoke("geoLocation", {},
+  function(res) {
+    alert(JSON.stringify(res));
+    });
+   }
+
+
+   document.querySelector('#discoverDevice_qr').onclick = function() {
+        WeixinJSBridge.invoke("discoverDevice", {
+        "type": "qrcode",   // 设备发现方式，支持 qrcode/bluetooth/input
+        "qrcode_url": "https://open.work.weixin.qq.com/connect/hardware?hw_code=X13vknnY_aTTa-n0IJoL_L3pYOH91eVslWDcnH1kNikf-Q96TtI8r967MClEX8pA"
+    },
+  function(res) {
+    console(JSON.stringify(res));
+    });
+   }
+
+    document.querySelector('#discoverDevice_bl').onclick = function() {
+        WeixinJSBridge.invoke("discoverDevice", {
+        "type": "bluetooth",   // 设备发现方式，支持 qrcode/bluetooth/input
+    },
+  function(res) {
+    console(JSON.stringify(res));
+    });
+   }
+
+    document.querySelector('#discoverDevice_sn').onclick = function() {
+        WeixinJSBridge.invoke("discoverDevice", {
+        "type": "input",   // 设备发现方式，支持 qrcode/bluetooth/input
+    },
+  function(res) {
+    console(JSON.stringify(res));
+    });
+   }
+
+      document.querySelector('#discoverDevice_choose').onclick = function() {
+        WeixinJSBridge.invoke("discoverDevice", {
+        "type": "choose",   // 设备发现方式，支持 qrcode/bluetooth/input
+        "appid":"10110",
+        "username":"gh_45b306365c3d",  //跳转到 微信小程序的username
+        "path":"/pages/shop/index/index?venderId=1000196101&EA_PTAG=17078.27.162",  //跳转到 微信小程序的路径
+        "describe":"暂无智能测温设备？"  //跳转商品的描述
+    },
+  function(res) {
+    console(JSON.stringify(res));
+    });
+   }
+
+   document.querySelector('#injectBLEJsInterface').onclick = function() {
+        WeixinJSBridge.invoke("injectBLEJsInterface", {
+    },
+  function(res) {
+    console(JSON.stringify(res));
+    });
+   }
+
+   document.querySelector('#OpenInviteTeamColleagueRecommend').onclick = function() {
+        WeixinJSBridge.invoke("wwapp.util.openInviteTeamColleagueRecommend", {
+        "activityType": 1,
+    },
+  function(res) {
+    console(JSON.stringify(res));
+    });
+   }
+
+    </script>
+    <button class="btn btn_primary" id="getLocation2">getLocation2</button>
+    <script>
+var x=document.getElementById("getLocation2");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+function showPosition(position)
+  {
+  x.innerHTML="Latitude: " + position.coords.latitude +
+  "<br />Longitude: " + position.coords.longitude;
+  }
+  document.querySelector('#getLocation2').onclick = getLocation;
+
+    </script>
+</html>

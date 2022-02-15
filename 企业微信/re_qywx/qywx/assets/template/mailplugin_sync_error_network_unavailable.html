@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width"/>
+	<title>当前网络无法连通</title>
+	<style>
+		html,body,h1,p,ol,li {
+		padding: 0;
+		margin: 0;
+		}
+		body{
+		padding:16px
+		}
+
+		.qmui_title {
+		font-size: 18px;
+		padding-bottom: 20px;
+		line-height: 1;
+		color: #000;
+		padding-top:20px;
+		}
+		.qmui_if {
+		padding-top:12px;
+		line-height: 1;
+		color: #777777;
+		}
+		ol {
+		list-style: decimal;
+		padding-left: 20px;
+		margin-top:12px;
+		}
+
+		ol.qmui_ol_with_title {
+		padding-left: 34px;
+		}
+
+		li {
+		padding: 4px 0;
+		color: #777777;
+		line-height: 1.5;
+		}
+		strong{
+			font-weight: bold;
+		}
+
+		.button {
+		height: 50px;
+		width: 180px;
+		font-size: 16px;
+		background-color: #E3E4E7;
+		color: #000000;
+		border: none;
+		outline: none;
+		}
+
+		.button:active {
+		background-color: rgba(227, 228, 231, 0.5);
+		color: rgba(0, 0, 0, 0.5);
+		}
+	</style>
+</head>
+<body>
+	<script>
+		function setting_click() {
+			console.log('qqmail://wifi');
+		}
+	</script>
+	<h1 class="qmui_title">当前网络无法连通</h1>
+	<p class="qmui_if">请检查或尝试：</p>
+	<ol class="qmui_ol_with_title">
+		<li>在系统设置中开启QQ邮箱的网络权限</li>
+		<li>确认当前网络是否需要二次验证</li>
+		<li>切换其它可用网络</li>
+	</ol>
+	<br/>
+	<br/>
+	<center><button class="button" onclick="setting_click()">前往设置</button></center>
+</body>
+</html>

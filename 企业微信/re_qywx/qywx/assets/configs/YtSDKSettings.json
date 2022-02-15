@@ -1,0 +1,217 @@
+{
+    "version": "1.0.0",
+    "sdk_settings":
+    {
+        "ocr_settings":
+        {
+            "resource_online": false,
+            "app_id":"10198923",
+            "ocrtype":"idcard",
+            "cardtype":0,
+            "mode_type":2,
+            "auto_timeout_ms": 100000,
+            "user_id":"360566935",
+            "blur_threshold": 0.3,
+            "video_quality": 1,
+            "valid_count_threshold": 15,
+            "idcard":
+            {
+                "result_api_url":"https://api.youtu.qq.com/youtu/ocrapi/idcardocr",
+                "need_flat":true,
+                "request_options":
+                {
+                    "border_check_flag":true,
+                    "enable_reshoot":true,
+                    "enable_detect_copy":true,
+                    "enable_quality_value":true,
+                    "ret_portrait_flag":true,
+                    "enable_detect_ps":true
+                }
+            },
+            "creditcard":
+            {
+                "result_api_url":"https://api.youtu.qq.com/youtu/ocrapi/creditcardocr",
+                "need_flat": false,
+                "request_options":
+                {
+                    "ret_warncode_flag":true,
+                    "ret_border_cut_image":true,
+                    "ret_card_no_image":false,
+                    "enable_copy_check":true,
+                    "enable_reshoot_check":true,
+                    "enable_border_check": true,
+                    "enable_recognize_warn_code":true,
+                    "enable_quality_value":true
+                }
+            }
+        },
+        "silent_settings":
+        {
+            "resource_online": false,
+            "timeout_countdown_ms": 10000,
+            "resourceDownloadPath": "targetpath",
+            "check_eye_open": false,
+            "open_eye_threshold": 0.19,
+            "app_id":"youtu_android_demo",
+            "action_security_level":1,
+            "stable_frame_num":0,
+            "action_frame_num":8,
+            "result_api_url":"https://meetingtest.youtu.qq.com/actionliveapi/silencelive",
+            "action_default_seq":[5],
+            "request_options":{
+                "best_image":true,
+                "do_live":true,
+                "do_mouth_detect":true,
+                "do_eye_detect":true
+            }
+        },
+        "action_settings":
+        {
+            "resource_online": false,
+            "timeout_countdown_ms": 10000,
+            "app_id":"youtu_android_demo",
+            "action_security_level":1,
+            "stable_frame_num":0,
+            "action_frame_num":8,
+            "last_action_frame_num":3,
+            "result_api_url":"https://meetingtest.youtu.qq.com/actionliveapi/actionlive",
+            "action_default_seq":[1,2],
+            "manual_trigger": false,
+            "same_tips_filter": false,
+            "request_options":{
+                "best_image":true,
+                "do_live":true,
+                "do_mouth_detect":true,
+                "do_eye_detect":true
+            },
+            "action_inner_settings": {
+                "max_gray_val":210,
+                "min_gray_val": 40,
+                "min_gray_ratio": 0.5,
+                "max_gray_ratio": 0.5,
+                "reject_iou_dq_thresh": 0.96,
+                "reject_iou_thresh": 0.8,
+                "reject_range_thread": 300,
+                "reject_frame_count_ratio": 0.95
+            }
+        },
+        "reflect_settings":
+        {
+            "resource_online": false,
+            "timeout_countdown_ms": 20000,
+            "app_id":"youtu_android_demo",
+            "reflect_security_level":2,
+            "backend_proto_type": 2,
+            "change_point_num":2,
+            "stable_frame_num":0,
+            "manual_trigger": false,
+            "force_check_pose": true,
+            "extra_config": "unit 120 version 2",
+            "config_api_url":"https://meetingtest.youtu.qq.com/youtu/openliveapi/get_color_seq",
+            "result_api_url":"https://meetingtest.youtu.qq.com/youtu/openliveapi/person_live4",
+            "config_api_url_backup":"https://meetingtest.youtu.qq.com/gatewayliveapi/EncPost?enc_ref_getlivetype",
+            "result_api_url_backup":"https://meetingtest.youtu.qq.com/gatewayliveapi/EncPost?enc_ref_reflectlive",
+            "request_options":
+            {
+                "business_id":"wx_default",
+                "person_id":"wx_default4",
+                "person_type":"youtu",
+                "req_type":"live",
+                "live_type": 1
+            }
+        },
+        "action+reflect_settings":
+        {
+            "resource_online": false,
+            "timeout_countdown_ms": 0,
+            "app_id":"youtu_android_demo",
+            "action_security_level":1,
+            "reflect_security_level":2,
+            "stable_frame_num":0,
+            "action_default_seq":[2],
+            "action_local_config_flag": false,
+            "color_data": "1 120 3 3 4 5 1 1 ",
+            "change_point_num":2,
+            "predetect_countdown_ms": 5000,
+            "need_check_multiface": false,
+            "reflect_tips_countdown_ms": 0,
+            "force_pose_check": true,
+            "control_config": "actref_ux_mode=0&need_action_video=true",
+            "smallface_ratio_threshold": 0.5,
+            "extra_config": "unit 120 version 2",
+            "config_api_url":"https://meetingtest.youtu.qq.com/actrefliveapi/getlivetype",
+            "result_api_url":"https://meetingtest.youtu.qq.com/actrefliveapi/actionreflectlive",
+//            "result_api_url":"https://meetingtest.youtu.qq.com/reflectliveapi/facelive",
+            "request_options_backup":
+            {
+                "mode": 0,
+                "check_conf": {
+                    "check_time_mode": 1,
+                    "check_color_mode": 2,
+                    "check_local_mode": 3,
+                    "check_quality_mode": 1,
+                    "check_mask_mode": 1,
+                    "check_all_eye_close_mode": 1
+                }
+            }
+        },
+        "lipread_settings":
+        {
+            "manual_trigger" : false,
+            "resource_online": false,
+            "timeout_countdown_ms": 10000,
+            "stable_frame_num":0,
+            "app_id":"youtu_android_demo",
+            "config_api_url":"https://meetingtest.youtu.qq.com/fourliveapi/livegetfour",
+            "result_api_url":"https://meetingtest.youtu.qq.com/fourliveapi/fourlive",
+            "result_api_url_backup":"https://meetingtest.youtu.qq.com/youtu/openliveapi/person_live4",
+            "backend_proto_type": 0,
+            "action_default_seq":[6,0,9,8],
+            "predetect_countdown_ms": 10000,
+            "request_options_backup":
+            {
+                "business_id":"wx_default",
+                "person_id":"wx_default4",
+                "person_type":"youtu",
+                "req_type":"live",
+                "live_type": 0
+            }
+        },
+        "detectonly_settings":
+        {
+            "need_big_face_mode":false,
+            "min_face_size":40
+        },
+        "ocr_video_ident_settings":
+        {
+            "app_id":"10144633",
+            "ocrtype":"hkcard18",
+            "auto_timeout_ms":30000,
+            "hkcard03":
+            {
+                "result_api_url":"https://api.youtu.qq.com/youtu/ocrapi/hkid_ocr_verification",
+                "request_options":
+                {
+                    "enable_debug_info":true
+                }
+            },
+            "hkcard18":
+            {
+                "result_api_url":"https://api.youtu.qq.com/youtu/ocrapi/hkid_ocr_verification",
+                "request_options":
+                {
+                    "enable_debug_info":true
+                }
+            },
+            "mycard":
+            {
+                "result_api_url":"https://api.youtu.qq.com/youtu/ocrapi/hkid_ocr_verification",
+                "request_options":
+                {
+                    "enable_debug_info":true
+                }
+            }
+        },
+        "need_network":true
+    }
+}

@@ -1,0 +1,27 @@
+{
+	"config": [{
+			"os": "android",
+			"manufacture": "SkyworthDigitalRT",
+			"model": "H4S01",
+			"avc_dec": {
+				"min_sdk": 19
+			},
+
+			"avc_enc": {
+				"min_sdk": 19
+			}
+		},
+		{
+			"os": "android",
+			"manufacture": "SkyworthDigitalRT",
+			"model": "Q3021",
+			"avc_dec": {
+				"min_sdk": 19
+			},
+
+			"avc_enc": {
+				"min_sdk": 19
+			}
+		}
+	]
+}

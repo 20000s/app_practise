@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Android lishi test</title>
+  </head>
+  <body>
+    <a href="javascript:;" onclick="lishi_recv()" style="display:block;font-size:40px;">领取红包</a>
+  </body>
+
+  <script type="text/javascript">
+  var lock = false;
+      var invoke = function(name,params,callback,error){
+
+        if (typeof(MiJSBridge) != "undefined") {
+
+          if(!lock){
+
+            lock = true;
+
+            MiJSBridge.invoke(name,params,function(res){
+                      responseHandle(res,callback,error);
+                  });
+
+                  setTimeout(function(){
+                    lock = false;  //1秒后自动解锁 放置客户端不执行回调
+                  },800);
+          }
+
+        }else{
+
+          console.log("MiJSBridge is not undefined!");
+          console.log("params is :");
+          console.log(params);
+
+          // error && error();
+        }
+      }
+
+
+      var responseHandle = function(res,callback,error){
+
+        lock = false;
+
+        if (res.err_code == 0) {
+          callback && callback(res);
+        }else{
+          error && error(res);
+        }
+      }
+
+
+      // message RecvLiShiResp
+      //   {
+      //       optional int32 errcode = 1;
+      //       optional bytes errmsg = 2;
+      //       optional int32 lishistatus = 3;     //利是状态,参见 LiShiStatus
+      //       optional int64 amount = 4;          //拆到金额
+      //       optional int32 hbtype = 5;          //利是类型，扩展预留
+      //       optional bytes sendername = 6;      //利是发送者名称
+      //       optional bytes wishing = 7;         //祝福语
+      //       optional bytes creditedwording = 8; //入账文案
+      //       optional int32 opentime = 9;        //拆利是时间
+      //       optional string senderimageurl = 10;//利是发送者头像
+      //       optional int32 recvstatus = 11;     //操作状态：0：可以领取,但是未领取；1：无权限领取；2：领到此红包
+      //   }
+      function lishi_recv(){
+
+        var data = {
+            "lishiID":199393,
+            "vid":292929,
+            "lishiTicket":"fad2k8cjanalal9cc",
+            "lishistatus":1,
+            "amount":12000000,
+            "hbtype":1233,
+            "sendername":"马化腾",
+            "wishing":"2017年恭贺新春！",
+            "creditedwording":"恭喜发财，呵呵呵呵！",
+            "opentime":124737338,
+            "senderimageurl":"",
+            "recvstatus":2
+        };
+
+        var callback = {};
+        var error = {};
+
+        // TODO
+        // hongbaoLishiOpen 是大波在客户端定义的需要监听的句柄
+        invoke("utility.gotoLishiRecv",data,callback,error);
+
+      };
+
+
+
+  </script>
+</html>

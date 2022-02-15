@@ -1,0 +1,39 @@
+{
+    "version": "1.0.0",
+    "ui_basic_config":
+    {
+        "ocr_card_ui":
+        {
+            "show_prompt_tips": true
+        },
+        "silent_ui":
+        {
+
+        },
+        "action_ui":
+        {
+            "max_retry_count": 0
+        },
+        "reflect_ui":
+        {
+            "max_retry_count": 0
+        },
+        "action+reflect_ui":
+        {
+            "max_retry_count": 1
+        },
+        "lipread_ui":
+        {
+            "max_retry_count":0
+        },
+        "detectonly_ui":
+        {
+            "max_retry_count": 0
+        },
+        "ocr_video_ident_ui":
+        {
+            "show_prompt_tips": true
+        }
+    }
+
+}

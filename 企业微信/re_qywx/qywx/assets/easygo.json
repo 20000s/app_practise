@@ -1,0 +1,33 @@
+{
+  "easyGoVersion": "1.0",
+  "client": "com.tencent.wework",
+  "logicEntities": [
+    {
+      "head": {
+        "function": "magicwindow",
+        "required": "true"
+      },
+      "body": {
+        "mode": "1",
+        "Activities": [
+          {
+            "name": "com.tencent.wework.multitalk.controller.VoipCallActivity",
+            "defaultFullScreen": "true"
+          }
+        ],
+        "activityPairs": [
+          {
+            "from": "com.tencent.wework.launch.WwMainActivity",
+            "to": "*"
+          }
+        ],
+        "UX": {
+          "supportRotationUxCompat": "false",
+          "isDraggable": "true"
+        },
+        "transActivities":[
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width"/>
+</head>
+
+<script type="text/javascript">
+	function wxqmailloginCallback(params) {
+			console.log("wxqmailloginCallback code: " + params.code);
+		return true;
+	}
+</script>
+<body>
+<div id="head" style="height: 10px;"> </div>
+<a href="qqmail://webpage?entity=exmail&action=wx_auth"> 测试微信授權 </a>
+<div />
+<a href="qqmail://account?action=login&type=exmail&email=fanglceshihao2%40qydev.name&pwd=fanglceshihao2%402020">测试返回邮箱</a>
+</body>
+</html>

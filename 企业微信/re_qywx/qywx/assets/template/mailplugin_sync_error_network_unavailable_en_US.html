@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width"/>
+	<title>Network connection unavailable</title>
+	<style>
+		html,body,h1,p,ol,li {
+		padding: 0;
+		margin: 0;
+		}
+		body{
+		padding:16px
+		}
+
+		.qmui_title {
+		font-size: 18px;
+		padding-bottom: 20px;
+		line-height: 1;
+		color: #000;
+		padding-top:20px;
+		}
+		.qmui_if {
+		padding-top:12px;
+		line-height: 1;
+		color: #777777;
+		}
+		ol {
+		list-style: decimal;
+		padding-left: 20px;
+		margin-top:12px;
+		}
+
+		ol.qmui_ol_with_title {
+		padding-left: 34px;
+		}
+
+		li {
+		padding: 4px 0;
+		color: #777777;
+		line-height: 1.5;
+		}
+		strong{
+			font-weight: bold;
+		}
+
+		.button {
+		height: 50px;
+		width: 180px;
+		font-size: 16px;
+		background-color: #E3E4E7;
+		color: #000000;
+		border: none;
+		outline: none;
+		}
+
+		.button:active {
+		background-color: rgba(227, 228, 231, 0.5);
+		color: rgba(0, 0, 0, 0.5);
+		}
+	</style>
+</head>
+<body>
+	<script>
+		function setting_click() {
+			console.log('qqmail://wifi');
+		}
+	</script>
+	<h1 class="qmui_title">Network connection unavailable</h1>
+	<p class="qmui_if">Please check or try to:</p>
+	<ol class="qmui_ol_with_title">
+		<li>Enable the network permission of QQ Mail in system settings</li>
+		<li>Confirm if secondary verification is required for the current network</li>
+		<li>Switch to another available network</li>
+	</ol>
+	<br/>
+	<br/>
+	<center><button class="button" onclick="setting_click()">Set Now</button></center>
+</body>
+</html>

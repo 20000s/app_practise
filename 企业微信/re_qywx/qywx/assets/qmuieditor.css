@@ -1,0 +1,189 @@
+@charset "UTF-8";
+
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+    background-color: #fff;
+}
+.UI_DARKMODE body {
+    background-color: #000000;
+}
+.QMUIEditor {
+    position: relative;
+    padding: 15px 15px 0px 15px;
+    min-height: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    word-break: break-all;
+    outline: none;
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    -webkit-user-modify: read-write;
+    font-size: 18px;
+    line-height: 1.3em;
+    color: #000000;
+}
+.UI_DARKMODE .QMUIEditor {
+    color: #ffffff;
+}
+/*
+ *     size             实际px范围
+ *      1               10px 太小，忽略
+ *      2               ~14px
+ *      3               15px-16px
+ *      4               17px-20px
+ *      5               21px-27px
+ *      6               28px-39px
+ *      7               40px~
+*/
+.QMUIEditor,
+.QMUIEditor font[size="3"]{
+    font-size: 16px;
+}
+.QMUIEditor font[size="4"]{
+    font-size: 18px;
+}
+.QMUIEditor font[size="5"]{
+    font-size: 20px;
+}
+.QMUIEditor font[size="6"]{
+    font-size: 22px;
+}
+.QMUIEditor_Preview{
+    -webkit-user-modify: read-only;
+}
+.QMUIEditor *:last-child {
+    margin-bottom: 0;
+}
+.QMUIEditor_empty[placeholder]:before {
+    content: attr(placeholder);
+    /* NO.13 */
+    color: #CCCCCC;
+    position: absolute;
+}
+.UI_DARKMODE .QMUIEditor_empty[placeholder]:before {
+    color: rgba(120, 121, 122, 50%);
+}
+.QMUIEditor h1,
+.QMUIEditor h2,
+.QMUIEditor h3,
+.QMUIEditor h4,
+.QMUIEditor h5,
+.QMUIEditor h6 {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.3em;
+    margin: 0px 0px 8px 0px;
+    padding: 0px;
+}
+.QMUIEditor h1 {
+  font-size: 22px;
+  line-height: 1.5em;
+}
+.QMUIEditor h2 {
+  font-size: 20px;
+  line-height: 1.4em;
+}
+.QMUIEditor p {
+    margin: 0px 0px 8px 0px;
+}
+.QMUIEditor div {
+    margin: 0px 0px 8px 0px;
+}
+.QMUIEditor a {
+    /* NO.36 */
+    color: #267EF0;
+    text-decoration: none;
+}
+.UI_DARKMODE a {
+    color: #338CFF;
+}
+.QMUIEditor a:active{
+    /* NO.12 */
+    background-color: #EBEBEB;
+}
+.UI_DARKMODE a:active {
+    background-color: rgba(75, 76, 77, 50%);
+}
+.QMUIEditor img {
+    max-width: 100%;
+    height: auto;
+}
+.QMUIEditor blockquote {
+    margin: 0 0 16px;
+    padding: 12px 16px;
+    /* NO.13 */
+    color: #CCCCCC;
+    font-size: 14px;
+    line-height: 1.4em;
+    /* NO.12 */
+    background-color: #EBEBEB;
+}
+.UI_DARKMODE .QMUIEditor blockquote {
+    color: rgba(120, 121, 122, 50%);
+    background-color: rgba(75, 76, 77, 50%);
+
+}
+/* ul */
+.QMUIEditor ul {
+    margin: 0px 0px 8px 16px;
+    padding: 0px;
+}
+.QMUIEditor ul {
+    list-style-type: none;
+}
+.QMUIEditor ul li {
+    position: relative;
+    margin: 0px 0px 8px 16px;
+    padding: 0px;
+}
+.QMUIEditor ul li:before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    background-color: #000000;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.56em;
+    left: -16px;
+}
+.UI_DARKMODE .QMUIEditor ul li:before {
+    background-color: #fff;
+}
+.QMUIEditor blockquote ul li {
+    padding-left: 16px;
+}
+.QMUIEditor blockquote ul li:before {
+    left: 0;
+    /* NO.12 */
+    background-color: #EBEBEB;
+}
+.UI_DARKMODE .QMUIEditor blockquote ul li:before {
+    background-color: rgba(75, 76, 77, 50%);
+}
+/* ol */
+.QMUIEditor ol {
+    margin: 0px 0px 8px 16px;
+    padding: 0px;
+}
+.QMUIEditor ol li {
+    position: relative;
+    margin: 0px 0px 8px 16px;
+    padding: 0px
+}
+.QMUIEditor blockquote ol li {
+    padding-left: 16px;
+}
+.QMUIEditor blockquote ol li:before {
+    left: 0;
+    /* NO.12 */
+    background-color: #EBEBEB;
+}
+.UI_DARKMODE .QMUIEditor blockquote ol li:before {
+    background-color: rgba(75, 76, 77, 50%);
+}

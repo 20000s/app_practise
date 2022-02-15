@@ -1,0 +1,319 @@
+:root {
+    /*NO.1*/
+    --white: #FFFFFF;
+    /*NO.4*/
+    --black: #000000;
+    /*NO.12*/
+    --gray_92: #EBEBEB;
+    /*NO.13*/
+    --gray_80: #CCCCCC;
+    /*NO.14*/
+    --gray_70: #B2B2B2;
+    /*NO.15*/
+    --gray_60: #999999;
+    /*NO.16*/
+    --gray_50: #808080;
+    /*NO.17*/
+    --gray_40: #666666;
+    /*NO.18*/
+    --gray_30: #4D4D4D;
+    /*NO.19*/
+    --gray_20: #333333;
+    /*NO.20*/
+    --gray_10: #1A1A1A;
+    /*NO.21*/
+    --gray_blue_99: #FAFBFC;
+    /*NO.22*/
+    --gray_blue_97_bg: #F5F7FA;
+    /*NO.23*/
+    --gray_blue_96: #F2F3F5;
+    /*NO.24*/
+    --gray_blue_94: #EBEDF0;
+    /*NO.25*/
+    --gray_blue_82: #C0C7D1;
+    /*NO.26*/
+    --gray_blue_72: #A9AFB8;
+    /*NO.27*/
+    --gray_blue_60: #8D9299;
+    /*NO.28*/
+    --gray_blue_50: #757A80;
+    /*NO.29*/
+    --gray_blue_40: #5E6166;
+    /*NO.30*/
+    --gray_blue_30: #46494D;
+    /*NO.31*/
+    --gray_blue_20: #292D33;
+    /*NO.32*/
+    --gray_blue_10: #12161A;
+    /*NO.33*/
+    --blue_dark_16: #3975C6;
+    /*NO.34*/
+    --blue_dark_26: #2966B9;
+    /*NO.35*/
+    --blue_notification_bg: #1A65C6;
+    /*NO.36*/
+    --blue_btn: #267EF0;
+    /*NO.37*/
+    --blue: #3D8BF2;
+    /*NO.38*/
+    --blue_6: #18B4F2;
+    /*NO.39*/
+    --blue_light_75: #C9E7FF;
+    /*NO.40*/
+    --blue_light_90: #E5F0FF;
+    /*NO.41*/
+    --blue_test: #3D6599;
+    /*NO.42*/
+    --blue_popover_icon: #1877F2;
+    /*NO.43*/
+    --blue_popover_text: #1771E6;
+    /*NO.44*/
+    --green_1: #26BF4C;
+    /*NO.45*/
+    --green_wechat: #15B628;
+    /*NO.46*/
+    --red_1: #FF6963;
+    /*NO.48*/
+    --red_2: #E64839;
+    /*NO.49*/
+    --red_3: #FF3C32;
+    /*NO.50*/
+    --red_tips: #FFF0F0;
+    /*NO.51*/
+    --red_dark: #8C5A5A;
+    /*NO.52*/
+    --yellow_1: #FFBD14;
+    /*NO.53*/
+    --yellow_tips: #FFF0CD;
+    /*NO.54*/
+    --yellow_dark: #9B7D46;
+    /*NO.55*/
+    --orange_external: #FF8214;
+    /*NO.56*/
+    --orange_1: #FA8F25;
+    /*NO.59*/
+    --white_bg_1: #FFFFFF;
+    /*NO.60*/
+    --white_bg_2: #FFFFFF;
+    /*NO.61*/
+    --gray_blue_97: #F5F7FA;
+    /*NO.62*/
+    --gray_blue_97_bg_1: #F5F7FA;
+    /*NO.63*/
+    --gray_blue_tabbar_bg: #FAFBFC;
+    /*NO.64*/
+    --blue_bubble_bg: #C9E7FF;
+    /*NO.65*/
+    --blue_link_on_bubble: #267EF0;
+    /*NO.66*/
+    --orange_highlight: #FBE5CE;
+    /*NO.68*/
+    --blue_empty_icon: #338BFF;
+    /*NO.69*/
+    --blue_bubble_press_bg: #BFDAF5;
+    /*NO.70*/
+    --white_bg_press_light: #F5F5F5;
+    /*NO.71*/
+    --white_bg_press: #EDEDED;
+    /*NO.72*/
+    --white_bg: #FFFFFF;
+    /*NO.73*/
+    --green_2: #32C757;
+    /*NO.74*/
+    --orange_2: #FAB505;
+    /*NO.75*/
+    --blue_light_10: #469AFA;
+    /*NO.76*/
+    --yellow_2: #E0BD87;
+    /*NO.77*/
+    --blue_nav_bg: #3975C6;
+    /*NO.78*/
+    --red_bg_nav: #E64839;
+    /*NO.79*/
+    --yellow_on_nav_bar: #FFF0CD;
+    /*NO.80*/
+    --black_bg: #000000;
+    /*NO.81*/
+    --blue_bubble_border: #B1D9FB;
+    /*NO.82*/
+    --gray_blue_94_bg: #EBEDF0;
+    /*NO.83*/
+    --red_hongbao: #F35D4C;
+    /*NO.84*/
+    --blue_second_nav_bg: #2966B9;
+    /*NO.85*/
+    --blue_stick_on_top_bg: #E5F0FF;
+    /*NO.86*/
+    --green_light_20: #51CC70;
+    /*NO.87*/
+    --blue_light_30: #77AEF6;
+    /*NO.88*/
+    --blue_dark_10: #3D8BF2;
+    /*NO.90*/
+    --gray_blue_97_stick_on_top_bg: #F5F7FA;
+    /*NO.91*/
+    --white_bubble_bg: #FFFFFF;
+    /*NO.92*/
+    --white_search_bar_bg: #FFFFFF;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /*NO.1*/
+        --white: rgb(0, 0, 0);
+        /*NO.4*/
+        --black: rgb(255, 255, 255);
+        /*NO.12*/
+        --gray_92: rgba(75, 76, 77, 50%);
+        /*NO.13*/
+        --gray_80: rgba(120, 121, 122, 50%);
+        /*NO.14*/
+        --gray_70: rgba(180, 182, 184, 50%);
+        /*NO.15*/
+        --gray_60: rgba(210, 212, 214, 50%);
+        /*NO.16*/
+        --gray_50: rgba(248, 251, 253, 50%);
+        /*NO.17*/
+        --gray_40: rgba(248, 251, 253, 58%);
+        /*NO.18*/
+        --gray_30: rgba(248, 251, 253, 68%);
+        /*NO.19*/
+        --gray_20: rgba(248, 251, 253, 78%);
+        /*NO.20*/
+        --gray_10: rgba(248, 251, 253, 90%);
+        /*NO.21*/
+        --gray_blue_99: rgba(46, 46, 47, 50%);
+        /*NO.22*/
+        --gray_blue_97_bg: rgb(0, 0, 0);
+        /*NO.23*/
+        --gray_blue_96: rgba(56, 57, 57, 50%);
+        /*NO.24*/
+        --gray_blue_94: rgba(65, 66, 66, 50%);
+        /*NO.25*/
+        --gray_blue_82: rgba(120, 121, 122, 50%);
+        /*NO.26*/
+        --gray_blue_72: rgba(180, 182, 184, 50%);
+        /*NO.27*/
+        --gray_blue_60: rgba(210, 212, 214, 50%);
+        /*NO.28*/
+        --gray_blue_50: rgba(248, 251, 253, 50%);
+        /*NO.29*/
+        --gray_blue_40: rgba(248, 251, 253, 58%);
+        /*NO.30*/
+        --gray_blue_30: rgba(248, 251, 253, 68%);
+        /*NO.31*/
+        --gray_blue_20: rgba(248, 251, 253, 78%);
+        /*NO.32*/
+        --gray_blue_10: rgba(248, 251, 253, 90%);
+        /*NO.33*/
+        --blue_dark_16: rgb(57, 117, 198);
+        /*NO.34*/
+        --blue_dark_26: rgb(41, 102, 185);
+        /*NO.35*/
+        --blue_notification_bg: rgba(255, 255, 255, 13%);
+        /*NO.36*/
+        --blue_btn: rgb(51, 140, 255);
+        /*NO.37*/
+        --blue: rgb(61, 139, 242);
+        /*NO.38*/
+        --blue_6: rgb(24, 180, 242);
+        /*NO.39*/
+        --blue_light_75: rgb(201, 231, 255);
+        /*NO.40*/
+        --blue_light_90: rgb(32, 48, 64);
+        /*NO.41*/
+        --blue_test: rgb(77, 118, 171);
+        /*NO.42*/
+        --blue_popover_icon: rgb(255, 255, 255);
+        /*NO.43*/
+        --blue_popover_text: rgb(255, 255, 255);
+        /*NO.44*/
+        --green_1: rgb(38, 191, 76);
+        /*NO.45*/
+        --green_wechat: rgb(21, 182, 40);
+        /*NO.46*/
+        --red_1: rgb(255, 105, 99);
+        /*NO.48*/
+        --red_2: rgb(230, 72, 57);
+        /*NO.49*/
+        --red_3: rgb(255, 60, 50);
+        /*NO.50*/
+        --red_tips: rgb(61, 34, 34);
+        /*NO.51*/
+        --red_dark: rgb(153, 107, 107);
+        /*NO.52*/
+        --yellow_1: rgb(255, 189, 20);
+        /*NO.53*/
+        --yellow_tips: rgb(59, 50, 29);
+        /*NO.54*/
+        --yellow_dark: rgb(166, 137, 83);
+        /*NO.55*/
+        --orange_external: rgb(255, 130, 20);
+        /*NO.56*/
+        --orange_1: rgb(250, 143, 37);
+        /*NO.59*/
+        --white_bg_1: rgb(26, 27, 28);
+        /*NO.60*/
+        --white_bg_2: rgb(44, 45, 46);
+        /*NO.61*/
+        --gray_blue_97: rgba(51, 51, 52, 50%);
+        /*NO.62*/
+        --gray_blue_97_bg_1: rgb(25, 25, 26);
+        /*NO.63*/
+        --gray_blue_tabbar_bg: rgba(17, 17, 18, 70%);
+        /*NO.64*/
+        --blue_bubble_bg: rgb(35, 80, 140);
+        /*NO.65*/
+        --blue_link_on_bubble: rgb(128, 183, 255);
+        /*NO.66*/
+        --orange_highlight: rgb(128, 96, 64);
+        /*NO.68*/
+        --blue_empty_icon: rgb(82, 135, 204);
+        /*NO.69*/
+        --blue_bubble_press_bg: rgb(46, 89, 146);
+        /*NO.70*/
+        --white_bg_press_light: rgb(55, 56, 56);
+        /*NO.71*/
+        --white_bg_press: rgb(25, 25, 25);
+        /*NO.72*/
+        --white_bg: rgb(0, 0, 0);
+        /*NO.73*/
+        --green_2: rgb(50, 199, 87);
+        /*NO.74*/
+        --orange_2: rgb(250, 181, 5);
+        /*NO.75*/
+        --blue_light_10: rgb(70, 154, 250);
+        /*NO.76*/
+        --yellow_2: rgb(224, 189, 135);
+        /*NO.77*/
+        --blue_nav_bg: rgb(0, 0, 0);
+        /*NO.78*/
+        --red_bg_nav: rgb(0, 0, 0);
+        /*NO.79*/
+        --yellow_on_nav_bar: rgb(255, 240, 205);
+        /*NO.80*/
+        --black_bg: rgb(0, 0, 0);
+        /*NO.81*/
+        --blue_bubble_border: rgb(41, 87, 148);
+        /*NO.82*/
+        --gray_blue_94_bg: rgb(0, 0, 0);
+        /*NO.83*/
+        --red_hongbao: rgb(243, 93, 76);
+        /*NO.84*/
+        --blue_second_nav_bg: rgb(0, 0, 0);
+        /*NO.85*/
+        --blue_stick_on_top_bg: rgb(26, 27, 28);
+        /*NO.86*/
+        --green_light_20: rgb(92, 204, 120);
+        /*NO.87*/
+        --blue_light_30: rgba(82, 135, 204, 80%);
+        /*NO.88*/
+        --blue_dark_10: rgb(67, 141, 239);
+        /*NO.90*/
+        --gray_blue_97_stick_on_top_bg: rgb(20, 20, 20);
+        /*NO.91*/
+        --white_bubble_bg: rgb(34, 35, 36);
+        /*NO.92*/
+        --white_search_bar_bg: rgba(245, 249, 255, 9%);
+    }
+}

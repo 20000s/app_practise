@@ -1,0 +1,57 @@
+{
+  "name": "gpu feature enable and disable list",
+  "entries": [
+    {
+      "description": "frequent hang in glClear on old android versions on Mali",
+      "os": {
+        "type": "android",
+        "version": {
+          "op": "<",
+          "value": "6.0"
+        }
+      },
+      "gl_renderer": ".*Mali.*",
+      "features": [
+        "gl_clear_broken"
+      ]
+    },
+    {
+      "description": "disable encoder input SurfaceTexture directly for all devices",
+      "gl_renderer": ".*",
+      "features": [
+        "disable_android_encoder_surfacetexture"
+      ]
+    },
+    {
+      "description": "decoder output SurfaceTexture directly for tested devices",
+      "gl_renderer": "Adreno[^0-9]+[56][0-9]+",
+      "codec_name": "OMX.qcom.video.decoder.avc",
+      "features": [
+        "enable_android_decoder_surfacetexture"
+      ]
+    },
+    {
+      "description": "disable hw codec",
+      "vendor_name": "Xiaomi",
+      "device_name": "MIX 2S",
+      "codec_name": "OMX.qcom.video.decoder.avc",
+      "features": [
+        "disable_android_system_decoder"
+      ]
+    },
+    {
+      "description": "fix crash in screen capture with some huawei device(ALE-UL00,CAM-UL00..), bugid: 1020362102857366163",
+      "vendor_name": "HUAWEI",
+      "os": {
+        "type": "android",
+        "version": {
+          "op": "==",
+          "value": "6.0"
+        }
+      },
+      "features": [
+        "enable_android_screen_capture_draw"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+    "layer_cnt": 7,
+    "blob_cnt": 7,
+    "layer_info": [
+        {
+            "layer_type": "Input",
+            "layer_name": "Input_0",
+            "input_blob_cnt": 0,
+            "output_blob_cnt": 1,
+            "input_blobs": [],
+            "output_blobs": [
+                "Input_0_0"
+            ],
+            "layer_param": {}
+        },
+        {
+            "layer_type": "Input",
+            "layer_name": "Input_1",
+            "input_blob_cnt": 0,
+            "output_blob_cnt": 1,
+            "input_blobs": [],
+            "output_blobs": [
+                "Input_1_0"
+            ],
+            "layer_param": {}
+        },
+        {
+            "layer_type": "LSTM",
+            "layer_name": "LSTM_0",
+            "input_blob_cnt": 1,
+            "output_blob_cnt": 1,
+            "input_blobs": [
+                "Input_0_0"
+            ],
+            "output_blobs": [
+                "LSTM_0_0"
+            ],
+            "layer_param": {
+                "num_output": 256,
+                "num_input": 136,
+                "direction": 1
+            }
+        },
+        {
+            "layer_type": "Linear",
+            "layer_name": "Linear_0",
+            "input_blob_cnt": 1,
+            "output_blob_cnt": 1,
+            "input_blobs": [
+                "LSTM_0_0"
+            ],
+            "output_blobs": [
+                "Linear_0_0"
+            ],
+            "layer_param": {
+                "num_input": 256,
+                "num_output": 512
+            }
+        },
+        {
+            "layer_type": "ReLU",
+            "layer_name": "ReLU_0",
+            "input_blob_cnt": 1,
+            "output_blob_cnt": 1,
+            "input_blobs": [
+                "Linear_0_0"
+            ],
+            "output_blobs": [
+                "ReLU_0_0"
+            ],
+            "layer_param": {
+                "slope": 0.0
+            }
+        },
+        {
+            "layer_type": "Linear",
+            "layer_name": "Linear_1",
+            "input_blob_cnt": 1,
+            "output_blob_cnt": 1,
+            "input_blobs": [
+                "ReLU_0_0"
+            ],
+            "output_blobs": [
+                "Linear_1_0"
+            ],
+            "layer_param": {
+                "num_input": 512,
+                "num_output": 17
+            }
+        },
+        {
+            "layer_type": "Eltwise",
+            "layer_name": "Eltwise_0",
+            "input_blob_cnt": 2,
+            "output_blob_cnt": 1,
+            "input_blobs": [
+                "Linear_1_0",
+                "Input_1_0"
+            ],
+            "output_blobs": [
+                "Eltwise_0_0"
+            ],
+            "layer_param": {
+                "op_type": 1,
+                "num_coeffs": 0
+            }
+        }
+    ]
+}

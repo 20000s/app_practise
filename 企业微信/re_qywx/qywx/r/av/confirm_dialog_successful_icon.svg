@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="120px" height="80px" viewBox="0 0 120 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>confirm_dialog_successful_icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="confirm_dialog_successful_icon" sketch:type="MSLayerGroup" fill="#45C01A">
+            <path d="M46.16,67.69 C68.72,45.13 91.28,22.57 113.84,0.01 C115.9,2.05 117.95,4.1 119.99,6.16 C95.39,30.78 70.77,55.38 46.16,79.99 C30.77,64.62 15.38,49.24 0.01,33.85 C2.05,31.79 4.1,29.74 6.16,27.71 C19.5,41.02 32.81,54.37 46.16,67.69 L46.16,67.69 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

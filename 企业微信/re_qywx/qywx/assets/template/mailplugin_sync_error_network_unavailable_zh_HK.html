@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width"/>
+	<title>目前網絡無法連接</title>
+	<style>
+		html,body,h1,p,ol,li {
+		padding: 0;
+		margin: 0;
+		}
+		body{
+		padding:16px
+		}
+
+		.qmui_title {
+		font-size: 18px;
+		padding-bottom: 20px;
+		line-height: 1;
+		color: #000;
+		padding-top:20px;
+		}
+		.qmui_if {
+		padding-top:12px;
+		line-height: 1;
+		color: #777777;
+		}
+		ol {
+		list-style: decimal;
+		padding-left: 20px;
+		margin-top:12px;
+		}
+
+		ol.qmui_ol_with_title {
+		padding-left: 34px;
+		}
+
+		li {
+		padding: 4px 0;
+		color: #777777;
+		line-height: 1.5;
+		}
+		strong{
+			font-weight: bold;
+		}
+
+		.button {
+		height: 50px;
+		width: 180px;
+		font-size: 16px;
+		background-color: #E3E4E7;
+		color: #000000;
+		border: none;
+		outline: none;
+		}
+
+		.button:active {
+		background-color: rgba(227, 228, 231, 0.5);
+		color: rgba(0, 0, 0, 0.5);
+		}
+	</style>
+</head>
+<body>
+	<script>
+		function setting_click() {
+			console.log('qqmail://wifi');
+		}
+	</script>
+	<h1 class="qmui_title">目前網絡無法連接</h1>
+	<p class="qmui_if">請檢查或嘗試：</p>
+	<ol class="qmui_ol_with_title">
+		<li>在系統設定中開啟 QQ 郵箱的網絡權限</li>
+		<li>確認目前網絡是否需要雙重驗證</li>
+		<li>切換至其它可用的網絡</li>
+	</ol>
+	<br/>
+	<br/>
+	<center><button class="button" onclick="setting_click()">前往設定</button></center>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "video.hw-dec":[
+    {
+      "val":false,
+      "conds":{
+        "op":"&",
+        "var":[
+          {
+            "feat":"manufacture",
+            "op":"=",
+            "var":"Xiaomi"
+          },
+          {
+            "feat":"model",
+            "op":"=",
+            "var":"MIX 2S"
+          }
+        ]
+      }
+    }
+  ]
+}

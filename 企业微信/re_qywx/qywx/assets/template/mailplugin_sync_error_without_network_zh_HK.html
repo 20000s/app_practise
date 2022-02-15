@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width"/>
+	<title>裝置目前處於飛行模式或無網絡狀態</title>
+	<style>
+		html,body,h1,p,ol,li {
+		padding: 0;
+		margin: 0;
+		}
+		body{
+		padding:16px
+		}
+
+		.qmui_title {
+		font-size: 18px;
+		padding-bottom: 20px;
+		padding-top:20px;
+		line-height: 1;
+		color: #000;
+		}
+		.qmui_if {
+		padding-top:12px;
+		line-height: 1;
+		color: #777777;
+		}
+		ol {
+		list-style: decimal;
+		padding-left: 20px;
+		margin-top:12px;
+		}
+
+		ol.qmui_ol_with_title {
+		padding-left: 34px;
+		}
+
+		li {
+		padding: 4px 0;
+		color: #777777;
+		line-height: 1.5;
+		}
+		strong{
+		font-weight: bold;
+		}
+
+		.button {
+		height: 50px;
+		width: 200px;
+		font-size: 16px;
+		background-color: #E3E4E7;
+		color: #000000;
+		border: none;
+		outline: none;
+		}
+
+		.button:active {
+		background-color: rgba(227, 228, 231, 0.5);
+		color: rgba(0, 0, 0, 0.5);
+		}
+	</style>
+</head>
+<body>
+<script>
+	function setting_click() {
+	    console.log('qqmail://airplane');
+	}
+</script>
+<h1 class="qmui_title">裝置目前處於飛行模式或無網絡狀態</h1>
+<p class="qmui_if">如需連接至互聯網，請參考以下數項：</p>
+<ol class="qmui_ol_with_title">
+	<li>檢查手機中的“<strong>飛行模式</strong>”設定，保持停用飛行模式</li>
+	<li>檢查手機中的“<strong>無線局域網</strong>”設定，選擇一個可用的 Wi-Fi 熱點連接</li>
+	<li>檢查手機是否已連接流動網絡</li>
+</ol>
+<br/>
+<br/>
+<center><button class="button" onclick="setting_click()">前往設定</button></center>
+</body>
+</html>

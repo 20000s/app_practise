@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>qmuieditor</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="qmuieditor.css">
+</head>
+<body>
+<div id="QMUIEditor" class="QMUIEditor QMUIEditor_empty $preview_only" placeholder="" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></div>
+<script src="qmuieditor.js"></script>
+<script>
+// document.getElementById("QMUIEditor").innerHTML = "contentHtml";
+QMUIEditor.editor.setHtml('$contentHtml');
+</script>
+</body>
+</html>
