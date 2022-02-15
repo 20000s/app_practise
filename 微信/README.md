@@ -8,39 +8,39 @@ jadx搜索log,找到相关函数
 
 ![](1.png)看到setconsoleLogopen,基本可以判断出找到相关函数了，之后可以写edxposed插件或frida了
 
-![](2.png)
+![](2.PNG)
 
 ## 发送消息
 
 先打开全局调试
 
-![](3.png)
+![](3.PNG)
 
 ddms trace 一下，寻找onclick,因为我们在发消息时点的是按钮
 
-![](4.png)
+![](4.PNG)
 
 继续点进去看看
 
-![](5.png)
+![](5.PNG)
 
 hook 方法a 即可得到相关消息
 
-![](6.png)
+![](6.PNG)
 
 ## 修改消息内容
 
 先查看一下控件id
 
-![](7.png)
+![](7.PNG)
 
 adb shell dumpsys activity top 寻找控件id 定位MMChattingListView
 
-![](8.png)
+![](8.PNG)
 
 去里面看看adapter 找到重写的getcount
 
-![](9.png)
+![](9.PNG)
 
 可以判断出Ltf是里面的元素，frida hook一下判断ltf里是什么类
 
@@ -82,7 +82,7 @@ Java.perform(function() {
 
 进入v0.a看看
 
-![](11.png)
+![](11.PNG)
 
 frida hook一下查看一些主要参数
 
@@ -133,11 +133,11 @@ Java.perform(function(){
 
 getgroup返回的是 return this.field_catalog;
 
-![](12.png)
+![](12.PNG)
 
 是18 QBd也是18 ，继续看看p方法，有两个类，frida hook看看 哪个被调用 发现`com.tencent.mm.ca.a.p()`先被调用，之后继续看调用
 
-![](13.png)
+![](13.PNG)
 
  最终 发现JE方法是主要方法 色子是(5,0) 猜拳就(2,0) , 所以改个返回值就行了
 
@@ -267,13 +267,13 @@ setTimeout(a,10)
 
 发现当我撤销消息时，数据库动了三次
 
-![](14.png)
+![](14.PNG)
 
 msgtype为10000是一个重要的点，试了几次发现只有撤销时type为10000，再看看栈回溯，对比正常信息发送 经过哪些函数，撤销时经过哪些函数
 
 com.tencent.mm.model.f.a是个重点 ，发现
 
-![](15.png)
+![](15.PNG)
 
 一眼就看到arg24为revokemsg 就是我们所走的流程 直接改一下就行
 
